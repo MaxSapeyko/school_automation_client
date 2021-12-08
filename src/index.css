@@ -1,4 +1,5 @@
 @import './fonts/stylesheet.css';
+@import '~antd/dist/antd.css';
 
 html {
     font-size: 62.5%; /* set the base to 10 px */

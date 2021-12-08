@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { AppState } from '../context/AppState';
+// import { AppState } from '../context/AppState';
 import { authService } from './authService';
 
 const API_URL = process.env.REACT_APP_API;

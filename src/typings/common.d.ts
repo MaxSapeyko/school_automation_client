@@ -4,3 +4,8 @@ declare interface IRoute {
   component: any;
   private: boolean;
 }
+
+declare interface IconProps {
+  className?: string;
+  onClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
+}
