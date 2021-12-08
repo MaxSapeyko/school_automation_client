@@ -23,8 +23,6 @@ api.interceptors.request.use(
   }
 );
 
-let appState: AppState;
-
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -36,6 +34,8 @@ api.interceptors.response.use(
   }
 );
 
-export const initAppState = (state: AppState) => {
-  appState = state;
-};
+// export const initAppState = (state: AppState) => {
+//   let appState: AppState;
+
+//   appState = state;
+// };
