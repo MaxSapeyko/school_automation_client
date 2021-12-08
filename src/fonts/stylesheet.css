@@ -8,6 +8,14 @@
 }
 
 @font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'),
+  url('./Montserrat/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
     font-family: 'Montserrat';
     src: local('Montserrat'),
     url('./Montserrat/Montserrat-Regular.ttf') format('truetype');

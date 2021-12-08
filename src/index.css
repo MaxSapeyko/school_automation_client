@@ -3,7 +3,7 @@
 
 html {
     font-size: 62.5%; /* set the base to 10 px */
-    --main-txt-color: #262626;
+    --main-txt-color: #000000;
     color: var(--main-txt-color);
 }
 
