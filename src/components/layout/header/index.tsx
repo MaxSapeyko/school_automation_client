@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
-import { Layout } from 'antd';
+
+import useStyles from './style';
 
 const Header: FC = () => {
-  return <Layout.Header></Layout.Header>;
+  const classes = useStyles();
+
+  return <header className={classes.root}>Header</header>;
 };
 
 export default Header;

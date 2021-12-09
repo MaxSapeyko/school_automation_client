@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
-import { Layout } from 'antd';
+
+import useStyles from './style';
 
 const Sider: FC = () => {
-  return <Layout.Sider></Layout.Sider>;
+  const classes = useStyles();
+
+  return <aside className={classes.root}>Sider</aside>;
 };
 
 export default Sider;

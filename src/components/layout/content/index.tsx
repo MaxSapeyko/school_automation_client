@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
-import { Layout } from 'antd';
+
+import useStyles from './style';
 
 const Content: FC = ({ children }) => {
-  return <Layout.Content>{children}</Layout.Content>;
+  const classes = useStyles();
+
+  return <main className={classes.root}>{children}</main>;
 };
 
 export default Content;

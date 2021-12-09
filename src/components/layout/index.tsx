@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Layout as AntdLayout } from 'antd';
 
 import Content from './content';
 import Header from './header';
@@ -7,17 +6,18 @@ import Sider from './sider';
 
 import useStyles from './style';
 
-const Layout: FC = () => {
+const Layout: FC = ({ children }) => {
   const classes = useStyles();
+  console.log(children);
 
   return (
-    <AntdLayout className={classes.root}>
+    <section className={classes.root}>
       <Sider />
-      <AntdLayout>
+      <section className='main'>
         <Header />
-        <Content>Content</Content>
-      </AntdLayout>
-    </AntdLayout>
+        <Content>{children}</Content>
+      </section>
+    </section>
   );
 };
 
