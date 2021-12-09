@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-const Subjects: FC<IconProps> = ({ ...props }) => {
+const Plus: FC<IconProps> = ({ ...props }) => {
   return (
     <svg
       {...props}
@@ -28,4 +28,4 @@ const Subjects: FC<IconProps> = ({ ...props }) => {
   );
 };
 
-export default Subjects;
+export default Plus;

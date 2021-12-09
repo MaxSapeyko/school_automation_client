@@ -51,6 +51,8 @@ const useStyles = createUseStyles({
       width: '32rem',
       height: '5.8rem',
       backgroundColor: COLORS.blue,
+      fontWeight: '500',
+      fontSize: '1.6rem',
     },
   },
 
