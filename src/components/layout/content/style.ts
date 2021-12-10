@@ -6,12 +6,12 @@ const useStyles = createUseStyles({
     backgroundColor: COLORS.white,
     width: '100%',
     height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+    padding: '0 4rem',
 
     '& .content__header': {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '0 4rem',
       height: '10rem',
     },
 
