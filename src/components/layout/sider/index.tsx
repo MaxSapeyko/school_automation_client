@@ -14,6 +14,7 @@ import Teachers from '../../icons/Teachers';
 import User from '../../icons/User';
 
 import useStyles from './style';
+import { Link } from 'react-router-dom';
 
 const Sider: FC = () => {
   const classes = useStyles();
@@ -27,30 +28,30 @@ const Sider: FC = () => {
 
       <Menu className={classes.menu} selectedKeys={[path]} mode='inline'>
         <Menu.Item key='/' icon={<User />}>
-          Особистий кабінет
+          <Link to='/'>Особистий кабінет</Link>
         </Menu.Item>
-        <Menu.Item key='2' icon={<Teachers />}>
-          Працівники закладу
+        <Menu.Item key='/teachers' icon={<Teachers />}>
+          <Link to='/teachers'>Працівники закладу</Link>
         </Menu.Item>
-        <Menu.Item key='3' icon={<Pupils />}>
-          Учні
+        <Menu.Item key='/pupils' icon={<Pupils />}>
+          <Link to='/pupils'>Учні</Link>
         </Menu.Item>
-        <Menu.Item key='4' icon={<Subjects />}>
-          Список предметів
+        <Menu.Item key='/subjects' icon={<Subjects />}>
+          <Link to='/subjects'>Список предметів</Link>
         </Menu.Item>
-        <Menu.Item key='5' icon={<Shedule />}>
-          Розклад занять
+        <Menu.Item key='/shedule' icon={<Shedule />}>
+          <Link to='/shedule'>Розклад занять</Link>
         </Menu.Item>
-        <Menu.Item key='6' icon={<Magazine />}>
-          Електронний журнал
+        <Menu.Item key='/magazine' icon={<Magazine />}>
+          <Link to='/magazine'>Електронний журнал</Link>
         </Menu.Item>
-        <Menu.Item key='7' icon={<News />}>
-          Новини
+        <Menu.Item key='/news' icon={<News />}>
+          <Link to='/news'>Новини</Link>
         </Menu.Item>
-        <Menu.Item key='8' icon={<Reporting />}>
-          Звітність навчання
+        <Menu.Item key='/reporting' icon={<Reporting />}>
+          <Link to='/reporting'>Звітність навчання</Link>
         </Menu.Item>
-        <Menu.Item key='9' icon={<LogOut />} className='logout__btn'>
+        <Menu.Item key='/logout' icon={<LogOut />} className='logout__btn'>
           Вийти
         </Menu.Item>
       </Menu>

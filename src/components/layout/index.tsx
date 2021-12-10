@@ -8,7 +8,6 @@ import useStyles from './style';
 
 const Layout: FC = ({ children }) => {
   const classes = useStyles();
-  console.log(children);
 
   return (
     <section className={classes.root}>

@@ -25,15 +25,26 @@ const useStyles = createUseStyles({
     color: COLORS.white,
     fontWeight: '600',
     fontSize: '1.5rem',
+    border: 'none',
+
+    '& a': {
+      color: COLORS.white,
+    },
 
     '&.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected': {
-      color: COLORS.white,
       backgroundColor: COLORS.emerald,
+
+      '& a': {
+        color: COLORS.white,
+      },
     },
 
     '& .ant-menu-item-active': {
-      color: `${COLORS.white} !important`,
       backgroundColor: COLORS.emerald,
+
+      '& a': {
+        color: `${COLORS.white} !important`,
+      },
     },
 
     '& .ant-menu-item::after': {
