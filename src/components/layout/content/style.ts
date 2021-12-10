@@ -6,6 +6,31 @@ const useStyles = createUseStyles({
     backgroundColor: COLORS.white,
     width: '100%',
     height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+
+    '& .content__header': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '0 4rem',
+      height: '10rem',
+    },
+
+    '& .content__title': {
+      fontWeight: '600',
+      fontSize: '4rem',
+    },
+
+    '& .header__select .ant-select-selector': {
+      borderColor: COLORS.black,
+      borderRadius: '0.2rem',
+      height: '5.8rem',
+
+      '& .ant-select-selection-item': {
+        display: 'flex',
+        alignItems: 'center',
+        fontWeight: '500',
+      },
+    },
   },
 });
 
