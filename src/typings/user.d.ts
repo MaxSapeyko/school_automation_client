@@ -6,6 +6,7 @@ declare interface UserDto {
   phone: string;
   email: string;
   password: string;
+  photoUrl: string;
   education: string;
   universityAddress: string;
   position: string;

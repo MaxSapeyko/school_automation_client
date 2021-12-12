@@ -8,6 +8,7 @@ export const USER_MOCK: UserDto = {
   password: '123123qwe',
   education: 'Вища освіта',
   universityAddress: 'Вища освіта',
+  photoUrl: 'assets/img/user_photo.jpg',
   position: 'Директор',
   specialization: 'Вчитель математики та фізики',
   classes: ['10', '10a'],
@@ -27,6 +28,7 @@ export const USERS_MOCK: UserDto[] = [
     position: 'Директор',
     specialization: 'Вчитель математики та фізики',
     classes: ['10', '10a'],
+    photoUrl: 'assets/img/user_photo.jpg',
   },
   {
     id: '2',
@@ -41,6 +43,7 @@ export const USERS_MOCK: UserDto[] = [
     position: 'Директор',
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
+    photoUrl: 'assets/img/user_photo.jpg',
   },
   {
     id: '3',
@@ -55,6 +58,7 @@ export const USERS_MOCK: UserDto[] = [
     position: 'Директор',
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
+    photoUrl: 'assets/img/user_photo.jpg',
   },
   {
     id: '4',
@@ -69,6 +73,7 @@ export const USERS_MOCK: UserDto[] = [
     position: 'Директор',
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
+    photoUrl: 'assets/img/user_photo.jpg',
   },
   {
     id: '5',
@@ -83,6 +88,7 @@ export const USERS_MOCK: UserDto[] = [
     position: 'Директор',
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
+    photoUrl: 'assets/img/user_photo.jpg',
   },
   {
     id: '6',
@@ -97,6 +103,7 @@ export const USERS_MOCK: UserDto[] = [
     position: 'Директор',
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
+    photoUrl: 'assets/img/user_photo.jpg',
   },
   {
     id: '7',
@@ -111,6 +118,7 @@ export const USERS_MOCK: UserDto[] = [
     position: 'Директор',
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
+    photoUrl: 'assets/img/user_photo.jpg',
   },
   {
     id: '8',
@@ -125,5 +133,6 @@ export const USERS_MOCK: UserDto[] = [
     position: 'Директор',
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
+    photoUrl: 'assets/img/user_photo.jpg',
   },
 ];
