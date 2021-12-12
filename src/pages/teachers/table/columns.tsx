@@ -18,7 +18,7 @@ const COLUMNS: ColumnsType<UserDto> = [
     render: (_name: string, user: UserDto) => {
       return (
         <Link
-          href={`/teachers/${user.id}`}
+          to={`/teachers/${user.id}`}
           className='profile__link'
         >{`${user.lastname} ${user.name} ${user.surname}`}</Link>
       );
