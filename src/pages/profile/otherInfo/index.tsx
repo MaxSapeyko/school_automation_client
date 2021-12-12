@@ -7,7 +7,7 @@ const OtherInfo: FC = () => {
   const classes = useStyles();
 
   return (
-    <Col span={14} className={classes.root}>
+    <Col span={24} className={classes.root}>
       <h4 className='data-module__title'>Інша інформація</h4>
 
       <Row gutter={[20, 0]} className='info__items'>
