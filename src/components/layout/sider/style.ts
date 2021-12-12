@@ -7,7 +7,10 @@ const useStyles = createUseStyles({
     width: '28rem',
     backgroundColor: COLORS.blue,
     color: COLORS.white,
-
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    
     '& .logo__icon': {
       width: '8rem',
       height: '4.9rem',

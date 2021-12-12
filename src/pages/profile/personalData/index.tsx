@@ -7,7 +7,7 @@ const PersonalData: FC = () => {
   const classes = useStyles();
 
   return (
-    <Col span={14} className={classes.root}>
+    <Col span={24} xxl={14} className={classes.root}>
       <h4 className='data-module__title'>Особисті дані</h4>
 
       <div className='info__inner'>
