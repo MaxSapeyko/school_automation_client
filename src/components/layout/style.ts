@@ -7,7 +7,7 @@ const useStyles = createUseStyles({
     paddingLeft: '28rem',
 
     '& .main': {
-      width: 'calc(100% - 28rem)',
+      width: '100%',
     },
   },
 });
