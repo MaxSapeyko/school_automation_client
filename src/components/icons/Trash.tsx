@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-const Subjects: FC<IconProps> = ({ ...props }) => {
+const Trash: FC<IconProps> = ({ ...props }) => {
   return (
     <svg
       {...props}
@@ -18,4 +18,4 @@ const Subjects: FC<IconProps> = ({ ...props }) => {
   );
 };
 
-export default Subjects;
+export default Trash;

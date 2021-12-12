@@ -22,7 +22,7 @@ const OtherInfo: FC = () => {
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item name='position'>
+          <Form.Item name='specialization'>
             <Input />
           </Form.Item>
         </Col>
