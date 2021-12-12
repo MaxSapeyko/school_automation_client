@@ -29,7 +29,7 @@ const useStyles = createUseStyles({
 
       '& .link__text': {
         marginLeft: '1rem',
-      }
+      },
     },
 
     '& .header__btn': {
@@ -39,6 +39,28 @@ const useStyles = createUseStyles({
       fontWeight: '500',
       fontSize: '1.6rem',
       backgroundColor: COLORS.blue,
+
+      '&.disabled': {
+        backgroundColor: COLORS.dividers
+      }
+    },
+
+    '& .header__actions': {
+      gap: '0 3rem',
+    },
+
+    '& .header__actions, .switch__block': {
+      display: 'flex',
+      alignItems: 'center',
+    },
+
+    '& .switch__block': {
+      fontWeight: '500',
+      fontSize: '1.6rem',
+
+      '& .ant-switch': {
+        marginRight: '1rem',
+      }
     },
 
     '& .header__select .ant-select-selector': {
