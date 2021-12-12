@@ -1,16 +1,26 @@
 import { ColumnsType } from 'antd/lib/table';
 import Trash from '../../../components/icons/Trash';
 
+const deleteUser = (id: string) => {
+  // TODO connect API
+};
+
 const COLUMNS: ColumnsType<UserDto> = [
   {
     title: '№',
     dataIndex: 'id',
-    render: (name: string) => <span>{name}</span>,
   },
   {
     title: 'ПІБ',
     dataIndex: 'name',
-    render: (name: string) => <span>{name}</span>,
+    render: (_name: string, user: UserDto) => {
+      return (
+        <a
+          href={`profile/${user.id}`}
+          className='profile__link'
+        >{`${user.lastname} ${user.name} ${user.surname}`}</a>
+      );
+    },
   },
   {
     title: 'Посада',
@@ -23,6 +33,7 @@ const COLUMNS: ColumnsType<UserDto> = [
   {
     title: 'Класи',
     dataIndex: 'classes',
+    render: (classes: string[]) => <span>{classes.join(', ')}</span>,
   },
   {
     title: 'Телефон',
@@ -30,7 +41,9 @@ const COLUMNS: ColumnsType<UserDto> = [
   },
   {
     title: 'Дії',
-    render: (_field: string) => <Trash className='trash__icon'/>,
+    render: (_, user: UserDto) => (
+      <Trash className='trash__icon' onClick={() => deleteUser(user.id)} />
+    ),
   },
 ];
 

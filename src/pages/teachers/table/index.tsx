@@ -11,7 +11,7 @@ const Table: FC = () => {
       columns={COLUMNS}
       dataSource={USERS_MOCK}
       pagination={{
-        pageSize: 50,
+        pageSize: 8,
         position: ['bottomRight'],
         showSizeChanger: false,
       }}
