@@ -12,7 +12,7 @@ export const ROUTES: IRoute[] = [
     path: '/',
     private: true,
     exact: true,
-    component: <Profile />,
+    component: <Profile type='own' />,
   },
   {
     path: '/magazine',
@@ -49,6 +49,12 @@ export const ROUTES: IRoute[] = [
     private: true,
     exact: true,
     component: <Teachers />,
+  },
+  {
+    path: '/teachers/:id',
+    private: true,
+    exact: true,
+    component: <Profile type='someone' />,
   },
   {
     path: '/subjects',

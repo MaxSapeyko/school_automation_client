@@ -1,4 +1,6 @@
 import { ColumnsType } from 'antd/lib/table';
+import { Link } from 'react-router-dom';
+
 import Trash from '../../../components/icons/Trash';
 
 const deleteUser = (id: string) => {
@@ -15,10 +17,10 @@ const COLUMNS: ColumnsType<UserDto> = [
     dataIndex: 'name',
     render: (_name: string, user: UserDto) => {
       return (
-        <a
-          href={`teachers/${user.id}`}
+        <Link
+          href={`/teachers/${user.id}`}
           className='profile__link'
-        >{`${user.lastname} ${user.name} ${user.surname}`}</a>
+        >{`${user.lastname} ${user.name} ${user.surname}`}</Link>
       );
     },
   },

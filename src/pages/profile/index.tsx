@@ -11,7 +11,11 @@ import { USER_MOCK } from '../../MOCK/user';
 
 import useStyles from './style';
 
-const Profile: FC = () => {
+export interface ProfileProps {
+  type: 'own' | 'someone';
+}
+
+const Profile: FC<ProfileProps> = ({ type }) => {
   const classes = useStyles();
   const [form] = useForm();
 
@@ -24,7 +28,8 @@ const Profile: FC = () => {
 
   return (
     <div className={classes.root}>
-      <Header />
+      <Header type={type} />
+
       <Form form={form}>
         <Row justify='space-between'>
           <PersonalData />
