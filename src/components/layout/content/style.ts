@@ -20,6 +20,15 @@ const useStyles = createUseStyles({
       fontSize: '4rem',
     },
 
+    '& .header__btn': {
+      height: '5.8rem',
+      display: 'flex',
+      alignItems: 'center',
+      fontWeight: '500',
+      fontSize: '1.6rem',
+      backgroundColor: COLORS.blue,
+    },
+
     '& .header__select .ant-select-selector': {
       borderColor: COLORS.black,
       borderRadius: '0.2rem',

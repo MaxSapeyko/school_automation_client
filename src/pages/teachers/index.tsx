@@ -1,9 +1,17 @@
 import React, { FC } from 'react';
 
+import Header from './header';
+
+import useStyles from './style';
+
 const Teachers: FC = () => {
+  const classes = useStyles();
+
   return (
-    <div>
-      Teachers
+    <div className={classes.root}>
+      <Header />
+
+
     </div>
   );
 };
