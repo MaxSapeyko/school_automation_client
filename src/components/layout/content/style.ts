@@ -20,6 +20,18 @@ const useStyles = createUseStyles({
       fontSize: '4rem',
     },
 
+    '& .back__link': {
+      fontWeight: '600',
+      fontSize: '1.8rem',
+      color: COLORS.blue,
+      display: 'flex',
+      alignItems: 'center',
+
+      '& .link__text': {
+        marginLeft: '1rem',
+      }
+    },
+
     '& .header__btn': {
       height: '5.8rem',
       display: 'flex',

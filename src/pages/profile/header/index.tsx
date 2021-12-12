@@ -23,9 +23,9 @@ const Header: FC<Pick<ProfileProps, 'type'>> = ({type}) => {
 
   return (
     <div className='content__header'>
-      <Link to='/teachers' className='content__title'>
+      <Link to='/teachers' className='back__link'>
         <LeftArrow />
-        <span>Список працівників</span>
+        <span className='link__text'>Список працівників</span>
       </Link>
 
       <Select defaultValue='admin' className='header__select'>
