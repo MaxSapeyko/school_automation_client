@@ -25,17 +25,25 @@ const COLUMNS: ColumnsType<UserDto> = [
     },
   },
   {
-    title: 'Посада',
-    dataIndex: 'position',
+    title: 'Клас',
+    dataIndex: 'class',
   },
   {
-    title: 'Спеціалізація',
-    dataIndex: 'specialization',
+    title: 'Дата народження',
+    dataIndex: 'dateOfBirth',
   },
   {
-    title: 'Класи',
-    dataIndex: 'classes',
-    render: (classes: string[]) => <span>{classes.join(', ')}</span>,
+    title: 'Стать',
+    dataIndex: 'sex',
+  },
+  {
+    title: 'Батьки',
+    dataIndex: 'parents',
+    render: (_name: string, user: UserDto) => {
+      return (
+        <span>{`${user.lastname} ${user.name} ${user.surname}`}</span>
+      );
+    },
   },
   {
     title: 'Телефон',
