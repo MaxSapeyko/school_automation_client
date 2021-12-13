@@ -1,18 +1,28 @@
 import React, { FC } from 'react';
 
-import Header from './header';
-import Table from './table';
+import Table from '../../components/table';
+
+import { USERS_MOCK } from '../../MOCK/user';
+import COLUMNS from './columns';
 
 import useStyles from './style';
 
 const Teachers: FC = () => {
   const classes = useStyles();
 
+  const addTeacher = () => {
+    // TODO add API
+  };
+
   return (
     <div className={classes.root}>
-      <Header />
-
-      <Table />
+      <Table
+        data={USERS_MOCK}
+        columns={COLUMNS}
+        title='Працівники закладу'
+        buttonText='Додати працівника'
+        buttonFunc={addTeacher}
+        />
     </div>
   );
 };

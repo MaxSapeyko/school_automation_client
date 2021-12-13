@@ -1,7 +1,7 @@
 import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
-import Trash from '../../../components/icons/Trash';
+import Trash from '../../components/icons/Trash';
 
 const deleteUser = (id: string) => {
   // TODO connect API
