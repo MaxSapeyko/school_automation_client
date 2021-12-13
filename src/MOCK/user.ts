@@ -12,6 +12,9 @@ export const USER_MOCK: UserDto = {
   position: 'Директор',
   specialization: 'Вчитель математики та фізики',
   classes: ['10', '10a'],
+  dateOfBirth: '12.12.2012',
+  sex: 'Ж',
+  class: '10a',
 };
 
 export const USERS_MOCK: UserDto[] = [
@@ -29,6 +32,9 @@ export const USERS_MOCK: UserDto[] = [
     specialization: 'Вчитель математики та фізики',
     classes: ['10', '10a'],
     photoUrl: 'assets/img/user_photo.jpg',
+    dateOfBirth: '12.12.2012',
+    sex: 'Ж',
+    class: '10a',
   },
   {
     id: '2',
@@ -44,6 +50,9 @@ export const USERS_MOCK: UserDto[] = [
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
     photoUrl: 'assets/img/user_photo.jpg',
+    dateOfBirth: '12.12.2012',
+    sex: 'Ж',
+    class: '10a',
   },
   {
     id: '3',
@@ -59,6 +68,9 @@ export const USERS_MOCK: UserDto[] = [
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
     photoUrl: 'assets/img/user_photo.jpg',
+    dateOfBirth: '12.12.2012',
+    sex: 'Ж',
+    class: '10a',
   },
   {
     id: '4',
@@ -74,6 +86,9 @@ export const USERS_MOCK: UserDto[] = [
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
     photoUrl: 'assets/img/user_photo.jpg',
+    dateOfBirth: '12.12.2012',
+    sex: 'Ж',
+    class: '10a',
   },
   {
     id: '5',
@@ -89,6 +104,9 @@ export const USERS_MOCK: UserDto[] = [
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
     photoUrl: 'assets/img/user_photo.jpg',
+    dateOfBirth: '12.12.2012',
+    sex: 'Ж',
+    class: '10a',
   },
   {
     id: '6',
@@ -104,6 +122,9 @@ export const USERS_MOCK: UserDto[] = [
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
     photoUrl: 'assets/img/user_photo.jpg',
+    dateOfBirth: '12.12.2012',
+    sex: 'Ж',
+    class: '10a',
   },
   {
     id: '7',
@@ -119,6 +140,9 @@ export const USERS_MOCK: UserDto[] = [
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
     photoUrl: 'assets/img/user_photo.jpg',
+    dateOfBirth: '12.12.2012',
+    sex: 'Ж',
+    class: '10a',
   },
   {
     id: '8',
@@ -134,5 +158,8 @@ export const USERS_MOCK: UserDto[] = [
     specialization: 'Вчитель математики та фізики',
     classes: ['5', '9'],
     photoUrl: 'assets/img/user_photo.jpg',
+    dateOfBirth: '12.12.2012',
+    sex: 'Ж',
+    class: '10a',
   },
 ];
