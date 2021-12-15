@@ -33,6 +33,12 @@ export const ROUTES: IRoute[] = [
     component: <Pupils />,
   },
   {
+    path: '/pupils/:id',
+    private: true,
+    exact: true,
+    component: <Profile type='pupil' />,
+  },
+  {
     path: '/reporting',
     private: true,
     exact: true,
@@ -54,7 +60,7 @@ export const ROUTES: IRoute[] = [
     path: '/teachers/:id',
     private: true,
     exact: true,
-    component: <Profile type='someone' />,
+    component: <Profile type='teacher' />,
   },
   {
     path: '/subjects',

@@ -12,7 +12,7 @@ import { USER_MOCK } from '../../MOCK/user';
 import useStyles from './style';
 
 export interface ProfileProps {
-  type: 'own' | 'someone';
+  type: 'own' | 'teacher' | 'pupil';
 }
 
 const Profile: FC<ProfileProps> = ({ type }) => {
