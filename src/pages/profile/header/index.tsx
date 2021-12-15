@@ -24,6 +24,22 @@ const Header: FC<Pick<ProfileProps, 'type'>> = ({ type }) => {
     );
   }
 
+  if (type === 'pupil') {
+    return (
+      <div className='content__header'>
+        <Link to='/pupils' className='back__link'>
+          <LeftArrow />
+          <span className='link__text'>Список учнів</span>
+        </Link>
+
+        <Select placeholder='Оберіть клас' className='header__select'>
+          <Option value='3'>3</Option>
+          <Option value='4'>4</Option>
+        </Select>
+      </div>
+    );
+  }
+
   return (
     <div className='content__header'>
       <Link to='/teachers' className='back__link'>

@@ -24,6 +24,13 @@ const useStyles = createUseStyles({
         fill: COLORS.blue,
       },
     },
+
+    '& .ant-select-selection-placeholder': {
+      display: 'flex',
+      alignItems: 'center',
+      color: COLORS.black,
+      fontWeight: '600',
+    },
   },
 });
 
