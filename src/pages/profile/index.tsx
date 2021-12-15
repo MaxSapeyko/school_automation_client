@@ -37,7 +37,7 @@ const Profile: FC<ProfileProps> = ({ type }) => {
         </Row>
 
         <Row>
-          <OtherInfo />
+          <OtherInfo type={type} />
         </Row>
       </Form>
     </div>
