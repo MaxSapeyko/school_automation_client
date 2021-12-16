@@ -4,6 +4,7 @@ import Profile from '../pages/profile';
 import Pupils from '../pages/pupils';
 import Reporting from '../pages/reporting';
 import Shedule from '../pages/shedule';
+import Subject from '../pages/subject';
 import Subjects from '../pages/subjects';
 import Teachers from '../pages/teachers';
 
@@ -67,5 +68,11 @@ export const ROUTES: IRoute[] = [
     private: true,
     exact: true,
     component: <Subjects />,
+  },
+  {
+    path: '/subjects/:id',
+    private: true,
+    exact: true,
+    component: <Subject />,
   },
 ];
