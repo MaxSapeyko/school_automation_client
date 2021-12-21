@@ -1,9 +1,11 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import Table from '../../components/table';
 
-import { USERS_MOCK } from '../../MOCK/user';
 import { userService } from '../../services/userService';
+import { UserDto } from '../../typings/user';
+import { Role } from '../../utils/enums';
+
 import COLUMNS from './columns';
 
 import useStyles from './style';
@@ -11,16 +13,16 @@ import useStyles from './style';
 const Pupils: FC = () => {
   const classes = useStyles();
 
+  const [pupils, setPupils] = useState<UserDto[]>([]);
   const addPupil = () => {
     // TODO add API
   };
 
   const getPupils = async () => {
     const users = await userService.allUsers();
-    const pupils = users.filter((user) => user.role === 'student');
+    const pupils = users.filter((user) => user.role === Role.Student);
 
-    console.log('sdfsdf');
-    console.log(users);
+    setPupils(pupils);
   };
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const Pupils: FC = () => {
   return (
     <div className={classes.root}>
       <Table
-        data={USERS_MOCK}
+        data={pupils}
         columns={COLUMNS}
         title='Учні'
         buttonText='Додати учня'
