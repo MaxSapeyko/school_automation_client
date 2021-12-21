@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Form, Input, Button } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 import Logo from '../../components/icons/Logo';
 
@@ -10,9 +11,11 @@ import { authService } from '../../services/authService';
 
 const Login: FC = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const submitFormValue = async (values: any) => {
     await authService.login(values);
+    history.push('/');
   };
 
   return (
