@@ -2,10 +2,11 @@ import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
+import { userService } from '../../services/userService';
 import { UserDto } from '../../typings/user';
 
-const deleteUser = (id: string) => {
-  // TODO connect API
+const deleteUser = async (id: string) => {
+  await userService.deleteUserById(id);
 };
 
 const COLUMNS: ColumnsType<UserDto> = [

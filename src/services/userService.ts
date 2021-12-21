@@ -12,6 +12,11 @@ class UserService {
     return resp.data;
   }
 
+  async deleteUserById(id: string): Promise<UserDto> {
+    const resp = await api.delete(`/users/${id}`);
+    return resp.data;
+  }
+
   async userMe(): Promise<UserDto> {
     const resp = await api.get(`/users/me`);
     return resp.data;
