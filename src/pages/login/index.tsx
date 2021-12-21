@@ -6,9 +6,14 @@ import Logo from '../../components/icons/Logo';
 import useStyles from './style';
 import Phone from '../../components/icons/Phone';
 import Mail from '../../components/icons/Mail';
+import { authService } from '../../services/authService';
 
 const Login: FC = () => {
   const classes = useStyles();
+
+  const submitFormValue = async (values: any) => {
+    await authService.login(values);
+  };
 
   return (
     <div className={classes.root}>
@@ -21,7 +26,7 @@ const Login: FC = () => {
           Для входу в систему заповніть наступну форму
         </p>
 
-        <Form>
+        <Form onFinish={submitFormValue}>
           <Form.Item name='email'>
             <Input placeholder='Email' className='form__item' />
           </Form.Item>

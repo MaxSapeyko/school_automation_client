@@ -1,5 +1,9 @@
+import { UserDto } from '../typings/user';
+import { Role } from '../utils/enums';
+
 export const USER_MOCK: UserDto = {
   id: '1',
+  role: Role.Student,
   name: 'Валентин',
   surname: 'Вікторович',
   lastname: 'Самойленко',
@@ -20,6 +24,7 @@ export const USER_MOCK: UserDto = {
 export const USERS_MOCK: UserDto[] = [
   {
     id: '1',
+    role: Role.Student,
     name: 'Валентин',
     surname: 'Вікторович',
     lastname: 'Самойленко',
@@ -38,6 +43,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '2',
+    role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
     lastname: 'Самойленко',
@@ -56,6 +62,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '3',
+    role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
     lastname: 'Самойленко',
@@ -74,6 +81,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '4',
+    role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
     lastname: 'Самойленко',
@@ -92,6 +100,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '5',
+    role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
     lastname: 'Самойленко',
@@ -111,6 +120,7 @@ export const USERS_MOCK: UserDto[] = [
   {
     id: '6',
     name: 'Петро',
+    role: Role.Student,
     surname: 'Вікторович',
     lastname: 'Самойленко',
     phone: '+38 (069) 122-12-78',
@@ -128,6 +138,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '7',
+    role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
     lastname: 'Самойленко',
@@ -145,6 +156,7 @@ export const USERS_MOCK: UserDto[] = [
     class: '10a',
   },
   {
+    role: Role.Student,
     id: '8',
     name: 'Петро',
     surname: 'Вікторович',

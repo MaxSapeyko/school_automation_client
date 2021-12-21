@@ -2,6 +2,7 @@ import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
+import { UserDto } from '../../typings/user';
 
 const deleteUser = (id: string) => {
   // TODO connect API
@@ -40,9 +41,7 @@ const COLUMNS: ColumnsType<UserDto> = [
     title: 'Батьки',
     dataIndex: 'parents',
     render: (_name: string, user: UserDto) => {
-      return (
-        <span>{`${user.lastname} ${user.name} ${user.surname}`}</span>
-      );
+      return <span>{`${user.lastname} ${user.name} ${user.surname}`}</span>;
     },
   },
   {

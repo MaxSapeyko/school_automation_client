@@ -10,7 +10,7 @@ const PrivateRoute: FC<Pick<IRoute, 'exact' | 'path'>> = ({
   path,
   exact,
 }) => {
-  if (!authService.isLoggedIn()) {
+  if (authService.isLoggedIn()) {
     return (
       <Route path={path} exact={exact}>
         <Layout>{children}</Layout>
