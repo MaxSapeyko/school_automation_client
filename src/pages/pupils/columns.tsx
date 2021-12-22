@@ -13,6 +13,9 @@ const COLUMNS: ColumnsType<UserDto> = [
   {
     title: '№',
     dataIndex: 'id',
+    render: (_1: any, _2: any, index: number) => {
+      return <span>{index + 1}</span>;
+    },
   },
   {
     title: 'ПІБ',
