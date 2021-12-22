@@ -11,6 +11,7 @@ import { USER_MOCK } from '../../MOCK/user';
 
 import useStyles from './style';
 import { userService } from '../../services/userService';
+import { useHistory } from 'react-router-dom';
 
 export interface ProfileProps {
   type: 'own' | 'teacher' | 'pupil';
@@ -18,19 +19,31 @@ export interface ProfileProps {
 
 const Profile: FC<ProfileProps> = ({ type }) => {
   const classes = useStyles();
+  const history = useHistory();
   const [form] = useForm();
+
+  const userId = history.location.pathname.split('/')[2];
 
   const getUser = async (userId: string) => {
     const user = userService.userById(userId);
-    console.log(user);
+    console.log(user, 'user');
 
     form.setFieldsValue({
       ...user,
     });
   };
 
+  const getMe = async () => {
+    const me = await userService.userMe();
+    console.log(me, 'me');
+  };
+
   useEffect(() => {
-    getUser();
+    if (userId) {
+      getUser(userId);
+    } else {
+      getMe();
+    }
 
     // eslint-disable-next-line
   }, []);
