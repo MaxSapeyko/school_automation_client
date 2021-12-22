@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { Form, Row } from 'antd';
@@ -14,6 +14,7 @@ import PersonalData from './personalData';
 import useStyles from './style';
 import { storageService } from '../../services/storageService';
 import { ACCESS_TOKEN_KEY } from '../../utils/common';
+import { UserDto } from '../../typings/user';
 
 export interface ProfileProps {
   type: 'own' | 'teacher' | 'pupil';
@@ -25,10 +26,12 @@ const Profile: FC<ProfileProps> = ({ type }) => {
   const [form] = useForm();
 
   const userId = history.location.pathname.split('/')[2];
+  const [user, setUser] = useState<UserDto | null>(null);
 
   const getUser = async (userId: string) => {
     const user = await userService.userById(userId);
 
+    setUser(user);
     form.setFieldsValue({
       ...user,
     });
@@ -49,7 +52,7 @@ const Profile: FC<ProfileProps> = ({ type }) => {
 
   return (
     <div className={classes.root}>
-      <Header type={type} />
+      <Header type={type} user={user} />
 
       <Form form={form}>
         <Row justify='space-between'>

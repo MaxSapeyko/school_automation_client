@@ -7,18 +7,28 @@ import { ProfileProps } from '..';
 
 import LeftArrow from '../../../components/icons/LeftArrow';
 import Plus from '../../../components/icons/Plus';
+import { UserDto } from '../../../typings/user';
+import { Role } from '../../../utils/enums';
+
+interface HeaderProps {
+  user: UserDto | null;
+}
 
 const { Option } = Select;
 
-const Header: FC<Pick<ProfileProps, 'type'>> = ({ type }) => {
+const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
+  type,
+  user,
+}) => {
   if (type === 'own') {
     return (
       <div className='content__header'>
         <span className='content__title'>Особистий кабінет</span>
 
-        <Select defaultValue='admin' className='header__select'>
-          <Option value='admin'>Директор</Option>
-          <Option value='student'>Учень</Option>
+        <Select defaultValue={user?.role} className='header__select'>
+          <Option value={Role.Administator}>Адміністрація</Option>
+          <Option value={Role.Student}>Учень</Option>
+          <Option value={Role.Teacher}>Вчитель</Option>
         </Select>
       </div>
     );
@@ -32,7 +42,11 @@ const Header: FC<Pick<ProfileProps, 'type'>> = ({ type }) => {
           <span className='link__text'>Список учнів</span>
         </Link>
 
-        <Select placeholder='Оберіть клас' className='header__select'>
+        <Select
+          placeholder='Оберіть клас'
+          defaultValue={user?.role}
+          className='header__select'
+        >
           <Option value='3'>3</Option>
           <Option value='4'>4</Option>
         </Select>
@@ -53,9 +67,10 @@ const Header: FC<Pick<ProfileProps, 'type'>> = ({ type }) => {
           <span>Класний керівник</span>
         </div>
 
-        <Select defaultValue='admin' className='header__select'>
-          <Option value='admin'>Директор</Option>
-          <Option value='student'>Учень</Option>
+        <Select defaultValue={user?.role} className='header__select'>
+          <Option value={Role.Administator}>Адміністрація</Option>
+          <Option value={Role.Student}>Учень</Option>
+          <Option value={Role.Teacher}>Вчитель</Option>
         </Select>
 
         <Button
