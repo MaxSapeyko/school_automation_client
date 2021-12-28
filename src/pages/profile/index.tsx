@@ -15,7 +15,7 @@ import OtherInfo from './otherInfo';
 import PersonalData from './personalData';
 
 import { ACCESS_TOKEN_KEY } from '../../utils/common';
-import { Role } from '../../utils/enums';
+import { Role, Sex } from '../../utils/enums';
 
 import useStyles from './style';
 
@@ -45,6 +45,8 @@ const Profile: FC<ProfileProps> = ({ type, isCreate }) => {
     try {
       const body = {
         ...values,
+        sex: Sex.Man,
+        photoUrl: 'empty',
       };
 
       if (type === 'pupil') {

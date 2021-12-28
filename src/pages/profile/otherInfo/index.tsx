@@ -16,31 +16,31 @@ const OtherInfo: FC<Pick<ProfileProps, 'type' | 'isCreate'>> = ({ type }) => {
         <Row gutter={[20, 0]} className='info__items'>
           <Col span={12}>
             <Form.Item name='name'>
-              <Input />
+              <Input placeholder='Ім’я' />
             </Form.Item>
             <Form.Item name='surname'>
-              <Input />
+              <Input placeholder='Прізвище' />
             </Form.Item>
             <Form.Item name='lastname'>
-              <Input />
+              <Input placeholder='Побатькові' />
             </Form.Item>
             <Form.Item name='phone'>
-              <Input />
+              <Input placeholder='Телефон' />
             </Form.Item>
           </Col>
 
           <Col span={12}>
             <Form.Item name='name'>
-              <Input />
+              <Input placeholder='Ім’я' />
             </Form.Item>
             <Form.Item name='surname'>
-              <Input />
+              <Input placeholder='Прізвище' />
             </Form.Item>
             <Form.Item name='lastname'>
-              <Input />
+              <Input placeholder='Побатькові' />
             </Form.Item>
             <Form.Item name='phone'>
-              <Input />
+              <Input placeholder='Телефон' />
             </Form.Item>
           </Col>
         </Row>
@@ -55,22 +55,22 @@ const OtherInfo: FC<Pick<ProfileProps, 'type' | 'isCreate'>> = ({ type }) => {
       <Row gutter={[20, 0]} className='info__items'>
         <Col span={12}>
           <Form.Item name='education'>
-            <Input />
+            <Input placeholder='Освіта' />
           </Form.Item>
         </Col>
         <Col span={12}>
           <Form.Item name='universityAddress'>
-            <Input />
+            <Input placeholder='Закінчений вуз' />
           </Form.Item>
         </Col>
         <Col span={12}>
           <Form.Item name='specialization'>
-            <Input />
+            <Input placeholder='Спеціалізація' />
           </Form.Item>
         </Col>
         <Col span={12}>
           <Form.Item name='classes'>
-            <Input />
+            <Input placeholder='Оберіть клас(и)' />
           </Form.Item>
         </Col>
       </Row>

@@ -14,12 +14,12 @@ const OtherInfo: FC<Pick<ProfileProps, 'isCreate'>> = () => {
       <Row gutter={[0, 0]} className='info__items'>
         <Col span={12}>
           <Form.Item name='email'>
-            <Input />
+            <Input placeholder='Логін' />
           </Form.Item>
         </Col>
         <Col span={12}>
           <Form.Item name='password'>
-            <Input />
+            <Input placeholder=':password' />
           </Form.Item>
         </Col>
       </Row>

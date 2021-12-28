@@ -17,22 +17,22 @@ const PersonalData: FC<Pick<ProfileProps, 'isCreate'>> = () => {
         <Row gutter={[20, 0]} className='info__items'>
           <Col span={12}>
             <Form.Item name='name'>
-              <Input />
+              <Input placeholder='Ім’я' />
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item name='surname'>
-              <Input />
+              <Input placeholder='Побатькові' />
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item name='lastname'>
-              <Input />
+              <Input placeholder='Прізвище' />
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item name='phone'>
-              <Input />
+              <Input placeholder='Телефон' />
             </Form.Item>
           </Col>
         </Row>
