@@ -1,21 +1,23 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import { Form, message, notification, Row } from 'antd';
+import { Form, notification, Row } from 'antd';
 import useForm from 'antd/lib/form/hooks/useForm';
 
 import { userService } from '../../services/userService';
+import { storageService } from '../../services/storageService';
+
+import { UserDto } from '../../typings/user';
 
 import Header from './header';
 import AuthorizationData from './authorizationData';
 import OtherInfo from './otherInfo';
 import PersonalData from './personalData';
 
-import useStyles from './style';
-import { storageService } from '../../services/storageService';
 import { ACCESS_TOKEN_KEY } from '../../utils/common';
-import { UserDto } from '../../typings/user';
 import { Role } from '../../utils/enums';
+
+import useStyles from './style';
 
 export interface ProfileProps {
   type: 'own' | 'teacher' | 'pupil';
@@ -52,8 +54,6 @@ const Profile: FC<ProfileProps> = ({ type, isCreate }) => {
       if (type === 'teacher') {
         body.role = Role.Teacher;
       }
-
-      console.log(body);
 
       const newUser = await userService.createUser(body);
 
