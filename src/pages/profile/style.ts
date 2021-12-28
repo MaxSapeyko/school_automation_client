@@ -28,6 +28,11 @@ const useStyles = createUseStyles({
         height: '5.8rem',
       },
     },
+
+    '& .header__inner': {
+      display: 'flex',
+      gap: '2rem',
+    },
   },
 });
 

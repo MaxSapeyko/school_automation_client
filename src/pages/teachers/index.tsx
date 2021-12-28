@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Table from '../../components/table';
 
@@ -12,11 +13,12 @@ import useStyles from './style';
 
 const Teachers: FC = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const [teachers, setTeachers] = useState<UserDto[]>([]);
 
-  const addTeacher = () => {
-    // TODO add API
+  const redirectToAdd = () => {
+    history.push('/teachers/create');
   };
 
   const getTeachers = async () => {
@@ -37,7 +39,7 @@ const Teachers: FC = () => {
         columns={COLUMNS}
         title='Працівники закладу'
         buttonText='Додати працівника'
-        buttonFunc={addTeacher}
+        buttonFunc={redirectToAdd}
       />
     </div>
   );

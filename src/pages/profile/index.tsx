@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import { Form, Row } from 'antd';
+import { Form, message, notification, Row } from 'antd';
 import useForm from 'antd/lib/form/hooks/useForm';
 
 import { userService } from '../../services/userService';
@@ -15,6 +15,7 @@ import useStyles from './style';
 import { storageService } from '../../services/storageService';
 import { ACCESS_TOKEN_KEY } from '../../utils/common';
 import { UserDto } from '../../typings/user';
+import { Role } from '../../utils/enums';
 
 export interface ProfileProps {
   type: 'own' | 'teacher' | 'pupil';
@@ -38,6 +39,39 @@ const Profile: FC<ProfileProps> = ({ type, isCreate }) => {
     });
   };
 
+  const createUser = async (values: any) => {
+    try {
+      const body = {
+        ...values,
+      };
+
+      if (type === 'pupil') {
+        body.role = Role.Student;
+      }
+
+      if (type === 'teacher') {
+        body.role = Role.Teacher;
+      }
+
+      console.log(body);
+
+      const newUser = await userService.createUser(body);
+
+      if (type === 'pupil') {
+        history.push(`/pupils/${newUser.id}`);
+      }
+
+      if (type === 'teacher') {
+        history.push(`/teachers/${newUser.id}`);
+      }
+    } catch (error) {
+      notification.error({
+        message: 'Error',
+        description: 'Bad Request',
+      });
+    }
+  };
+
   useEffect(() => {
     if (userId) {
       getUser(userId);
@@ -53,9 +87,9 @@ const Profile: FC<ProfileProps> = ({ type, isCreate }) => {
 
   return (
     <div className={classes.root}>
-      <Header type={type} user={user} isCreate={isCreate} />
+      <Form form={form} onFinish={createUser}>
+        <Header type={type} user={user} isCreate={isCreate} />
 
-      <Form form={form}>
         <Row justify='space-between'>
           <PersonalData isCreate={isCreate} />
           <AuthorizationData isCreate={isCreate} />

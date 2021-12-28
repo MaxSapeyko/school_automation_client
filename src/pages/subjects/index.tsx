@@ -6,7 +6,7 @@ import COLUMNS from './columns';
 import { SUBJECTS } from '../../MOCK/subject';
 
 const Subjects: FC = () => {
-  const addSubject = () => {
+  const redirectToAdd = () => {
     // TODO connect API
   };
 
@@ -17,7 +17,7 @@ const Subjects: FC = () => {
         columns={COLUMNS}
         title='Список предметів'
         buttonText='Додати предмет'
-        buttonFunc={addSubject}
+        buttonFunc={redirectToAdd}
       />
     </div>
   );

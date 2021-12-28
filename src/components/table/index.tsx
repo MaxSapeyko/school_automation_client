@@ -5,18 +5,19 @@ import Header, { HeaderProps } from './header';
 interface TableProps {
   columns: any;
   data: any;
+  buttonFunc: () => void;
 }
 
 const Table: FC<TableProps & HeaderProps> = ({
   columns,
   data,
   title,
-  buttonFunc,
   buttonText,
+  buttonFunc,
 }) => {
   return (
     <div>
-      <Header title={title} buttonFunc={buttonFunc} buttonText={buttonText} />
+      <Header title={title} buttonText={buttonText} buttonFunc={buttonFunc} />
 
       <AntTable
         columns={columns}

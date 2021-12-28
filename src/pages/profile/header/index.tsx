@@ -48,15 +48,27 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
           <span className='link__text'>Список учнів</span>
         </Link>
 
-        <Select
-          disabled={!isCreate}
-          placeholder='Оберіть клас'
-          defaultValue={user?.role}
-          className='header__select'
-        >
-          <Option value='3'>3</Option>
-          <Option value='4'>4</Option>
-        </Select>
+        <div className='header__inner'>
+          <Select
+            disabled={!isCreate}
+            placeholder='Оберіть клас'
+            defaultValue={user?.role}
+            className='header__select'
+          >
+            <Option value='3'>3</Option>
+            <Option value='4'>4</Option>
+          </Select>
+
+          <Button
+            disabled={!isCreate}
+            className={classNames('header__btn', { disabled: !isCreate })}
+            icon={<Plus />}
+            htmlType='submit'
+            type='primary'
+          >
+            Додати
+          </Button>
+        </div>
       </div>
     );
   }
@@ -81,10 +93,11 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
         </Select>
 
         <Button
-          disabled
-          className={classNames('header__btn', { disabled: true })}
+          disabled={!isCreate}
+          className={classNames('header__btn', { disabled: !isCreate })}
           icon={<Plus />}
           type='primary'
+          htmlType='submit'
         >
           Додати
         </Button>
