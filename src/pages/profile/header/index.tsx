@@ -12,6 +12,7 @@ import { Role } from '../../../utils/enums';
 
 interface HeaderProps {
   user: UserDto | null;
+  isCreate: boolean;
 }
 
 const { Option } = Select;
@@ -19,13 +20,18 @@ const { Option } = Select;
 const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
   type,
   user,
+  isCreate,
 }) => {
   if (type === 'own') {
     return (
       <div className='content__header'>
         <span className='content__title'>Особистий кабінет</span>
 
-        <Select defaultValue={user?.role} className='header__select'>
+        <Select
+          disabled={!isCreate}
+          value={user?.role}
+          className='header__select'
+        >
           <Option value={Role.Administator}>Адміністрація</Option>
           <Option value={Role.Student}>Учень</Option>
           <Option value={Role.Teacher}>Вчитель</Option>
@@ -43,6 +49,7 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
         </Link>
 
         <Select
+          disabled={!isCreate}
           placeholder='Оберіть клас'
           defaultValue={user?.role}
           className='header__select'
@@ -67,7 +74,7 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
           <span>Класний керівник</span>
         </div>
 
-        <Select defaultValue={user?.role} className='header__select'>
+        <Select value={user?.role} className='header__select'>
           <Option value={Role.Administator}>Адміністрація</Option>
           <Option value={Role.Student}>Учень</Option>
           <Option value={Role.Teacher}>Вчитель</Option>

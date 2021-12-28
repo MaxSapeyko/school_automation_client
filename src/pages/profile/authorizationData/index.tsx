@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { Col, Form, Input, Row } from 'antd';
 
 import useStyles from './style';
+import { ProfileProps } from '..';
 
-const OtherInfo: FC = () => {
+const OtherInfo: FC<Pick<ProfileProps, 'isCreate'>> = () => {
   const classes = useStyles();
 
   return (

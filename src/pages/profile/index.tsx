@@ -18,9 +18,10 @@ import { UserDto } from '../../typings/user';
 
 export interface ProfileProps {
   type: 'own' | 'teacher' | 'pupil';
+  isCreate: boolean;
 }
 
-const Profile: FC<ProfileProps> = ({ type }) => {
+const Profile: FC<ProfileProps> = ({ type, isCreate }) => {
   const classes = useStyles();
   const history = useHistory();
   const [form] = useForm();
@@ -52,16 +53,16 @@ const Profile: FC<ProfileProps> = ({ type }) => {
 
   return (
     <div className={classes.root}>
-      <Header type={type} user={user} />
+      <Header type={type} user={user} isCreate={isCreate} />
 
       <Form form={form}>
         <Row justify='space-between'>
-          <PersonalData />
-          <AuthorizationData />
+          <PersonalData isCreate={isCreate} />
+          <AuthorizationData isCreate={isCreate} />
         </Row>
 
         <Row>
-          <OtherInfo type={type} />
+          <OtherInfo type={type} isCreate={isCreate} />
         </Row>
       </Form>
     </div>

@@ -5,7 +5,7 @@ import { ProfileProps } from '..';
 
 import useStyles from './style';
 
-const OtherInfo: FC<Pick<ProfileProps, 'type'>> = ({ type }) => {
+const OtherInfo: FC<Pick<ProfileProps, 'type' | 'isCreate'>> = ({ type }) => {
   const classes = useStyles();
 
   if (type === 'pupil') {
