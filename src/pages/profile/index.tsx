@@ -53,6 +53,10 @@ const Profile: FC<ProfileProps> = ({ type, isCreate }) => {
         body.role = Role.Student;
       }
 
+      if (type === 'teacher') {
+        body.classes = body.classes.split(',');
+      }
+
       const newUser = await userService.createUser(body);
 
       if (type === 'pupil') {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
 import { UserDto } from '../../typings/user';
+import { RoleTranslate } from '../../utils/common';
 
 const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<UserDto> => [
   {
@@ -27,6 +28,9 @@ const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<UserDto> => [
   {
     title: 'Посада',
     dataIndex: 'position',
+    render: (position: string, user: UserDto) => {
+      return <span>{RoleTranslate[user.role]}</span>;
+    },
   },
   {
     title: 'Спеціалізація',
