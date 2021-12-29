@@ -2,14 +2,10 @@ import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
-import { userService } from '../../services/userService';
 import { UserDto } from '../../typings/user';
+import { SexTranslate } from '../../utils/common';
 
-const deleteUser = async (id: string) => {
-  await userService.deleteUserById(id);
-};
-
-const COLUMNS: ColumnsType<UserDto> = [
+const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<UserDto> => [
   {
     title: '№',
     dataIndex: 'id',
@@ -36,10 +32,16 @@ const COLUMNS: ColumnsType<UserDto> = [
   {
     title: 'Дата народження',
     dataIndex: 'dateOfBirth',
+    render: (dateOfBirth: string) => {
+      return <span>{new Date(dateOfBirth).toLocaleDateString()}</span>;
+    },
   },
   {
     title: 'Стать',
     dataIndex: 'sex',
+    render: (sex: 'man' | 'woman') => {
+      return <span>{SexTranslate[sex]}</span>;
+    },
   },
   {
     title: 'Батьки',
@@ -54,7 +56,7 @@ const COLUMNS: ColumnsType<UserDto> = [
   },
   {
     title: 'Дії',
-    render: (_, user: UserDto) => (
+    render: (unused: any, user: UserDto) => (
       <Trash className='trash__icon' onClick={() => deleteUser(user.id)} />
     ),
   },

@@ -28,6 +28,13 @@ const Teachers: FC = () => {
     setTeachers(pupils);
   };
 
+  const deleteUser = async (id: string) => {
+    await userService.deleteUserById(id);
+    const filteredTeachers = teachers.filter((teacher) => teacher.id !== id);
+
+    setTeachers(filteredTeachers);
+  };
+
   useEffect(() => {
     getTeachers();
   }, []);
@@ -36,7 +43,7 @@ const Teachers: FC = () => {
     <div className={classes.root}>
       <Table
         data={teachers}
-        columns={COLUMNS}
+        columns={COLUMNS(deleteUser)}
         title='Працівники закладу'
         buttonText='Додати працівника'
         buttonFunc={redirectToAdd}

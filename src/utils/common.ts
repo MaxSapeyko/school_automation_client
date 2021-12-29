@@ -10,3 +10,8 @@ export const COLORS = {
   dividers: '#E1E1E1',
   lightBlue: '#ECF0F4',
 };
+
+export const SexTranslate = {
+  man: 'Чоловік',
+  woman: 'Жінка',
+};
