@@ -30,11 +30,11 @@ const Login: FC = () => {
         </p>
 
         <Form onFinish={submitFormValue}>
-          <Form.Item name='email'>
+          <Form.Item required name='email'>
             <Input placeholder='Email' className='form__item' />
           </Form.Item>
 
-          <Form.Item name='password'>
+          <Form.Item required name='password'>
             <Input.Password placeholder='Password' className='form__item' />
           </Form.Item>
 

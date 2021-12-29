@@ -17,6 +17,10 @@ const useStyles = createUseStyles({
       margin: '2.4rem 0 0 0',
     },
 
+    '& .ant-form-item_no-margin': {
+      margin: '0',
+    },
+
     '& .ant-form-item': {
       maxWidth: '45.4rem',
       minWidth: '20rem',

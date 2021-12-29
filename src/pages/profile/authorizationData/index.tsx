@@ -4,7 +4,7 @@ import { Col, Form, Input, Row } from 'antd';
 import useStyles from './style';
 import { ProfileProps } from '..';
 
-const OtherInfo: FC<Pick<ProfileProps, 'isCreate'>> = () => {
+const OtherInfo: FC<Pick<ProfileProps, 'isCreate'>> = ({ isCreate }) => {
   const classes = useStyles();
 
   return (
@@ -13,13 +13,13 @@ const OtherInfo: FC<Pick<ProfileProps, 'isCreate'>> = () => {
 
       <Row gutter={[0, 0]} className='info__items'>
         <Col span={12}>
-          <Form.Item name='email'>
-            <Input placeholder='Логін' />
+          <Form.Item required name='email'>
+            <Input placeholder='Логін' disabled={!isCreate} />
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item name='password'>
-            <Input placeholder=':password' />
+          <Form.Item required name='password'>
+            <Input placeholder=':password' disabled={!isCreate} />
           </Form.Item>
         </Col>
       </Row>

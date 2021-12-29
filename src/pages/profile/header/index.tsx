@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Select, Switch } from 'antd';
+import { Button, Form, Select, Switch } from 'antd';
 import classNames from 'classnames';
 
 import { ProfileProps } from '..';
@@ -26,16 +26,17 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
     return (
       <div className='content__header'>
         <span className='content__title'>Особистий кабінет</span>
-
-        <Select
-          disabled={!isCreate}
-          value={user?.role}
-          className='header__select'
-        >
-          <Option value={Role.Administator}>Адміністрація</Option>
-          <Option value={Role.Student}>Учень</Option>
-          <Option value={Role.Teacher}>Вчитель</Option>
-        </Select>
+        <Form.Item required name='role' className='ant-form-item_no-margin'>
+          <Select
+            disabled={!isCreate}
+            defaultValue={user?.role}
+            placeholder='Оберіть роль'
+            className='header__select'
+          >
+            <Option value={Role.Administator}>Адміністрація</Option>
+            <Option value={Role.Teacher}>Вчитель</Option>
+          </Select>
+        </Form.Item>
       </div>
     );
   }
@@ -49,25 +50,27 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
         </Link>
 
         <div className='header__inner'>
-          <Select
-            disabled={!isCreate}
-            placeholder='Оберіть клас'
-            defaultValue={user?.class}
-            className='header__select'
-          >
-            <Option value='1'>1</Option>
-            <Option value='2'>2</Option>
-            <Option value='3'>3</Option>
-            <Option value='4'>4</Option>
-            <Option value='5'>5</Option>
-            <Option value='6'>6</Option>
-            <Option value='7'>7</Option>
-            <Option value='8'>8</Option>
-            <Option value='9'>9</Option>
-            <Option value='10'>10</Option>
-            <Option value='11'>11</Option>
-            <Option value='12'>12</Option>
-          </Select>
+          <Form.Item required name='class' className='ant-form-item_no-margin'>
+            <Select
+              disabled={!isCreate}
+              placeholder='Оберіть клас'
+              defaultValue={user?.class}
+              className='header__select'
+            >
+              <Option value='1'>1</Option>
+              <Option value='2'>2</Option>
+              <Option value='3'>3</Option>
+              <Option value='4'>4</Option>
+              <Option value='5'>5</Option>
+              <Option value='6'>6</Option>
+              <Option value='7'>7</Option>
+              <Option value='8'>8</Option>
+              <Option value='9'>9</Option>
+              <Option value='10'>10</Option>
+              <Option value='11'>11</Option>
+              <Option value='12'>12</Option>
+            </Select>
+          </Form.Item>
 
           <Button
             disabled={!isCreate}
@@ -96,11 +99,17 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
           <span>Класний керівник</span>
         </div>
 
-        <Select value={user?.role} className='header__select'>
-          <Option value={Role.Administator}>Адміністрація</Option>
-          <Option value={Role.Student}>Учень</Option>
-          <Option value={Role.Teacher}>Вчитель</Option>
-        </Select>
+        <Form.Item required name='role' className='ant-form-item_no-margin'>
+          <Select
+            disabled={!isCreate}
+            defaultValue={user?.role}
+            placeholder='Оберіть роль'
+            className='header__select'
+          >
+            <Option value={Role.Administator}>Адміністрація</Option>
+            <Option value={Role.Teacher}>Вчитель</Option>
+          </Select>
+        </Form.Item>
 
         <Button
           disabled={!isCreate}
