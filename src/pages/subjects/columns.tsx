@@ -2,6 +2,7 @@ import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
+import { SubjectDto } from '../../typings/subject';
 
 const COLUMNS = (
   deleteSubject: (id: string) => void
@@ -30,11 +31,11 @@ const COLUMNS = (
   },
   {
     title: 'Ким викладається',
-    dataIndex: 'teacher',
+    dataIndex: 'users',
     render: (teacher: string) => {
       return (
-        <Link to={`/subjects/${teacher}`} className='profile__link'>
-          {teacher}
+        <Link to={`/teachers/${teacher}`} className='profile__link'>
+          {teacher[0]}
         </Link>
       );
     },
