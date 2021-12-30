@@ -1,5 +1,7 @@
-import { appState } from '../context/AppState';
+import jwt_decode from 'jwt-decode';
 import { api } from './api';
+
+import { appState } from '../context/AppState';
 import { storageService } from './storageService';
 import { userService } from './userService';
 
@@ -41,6 +43,3 @@ class AuthService {
 }
 
 export const authService = new AuthService();
-function jwt_decode(arg0: string): any {
-  throw new Error('Function not implemented.');
-}
