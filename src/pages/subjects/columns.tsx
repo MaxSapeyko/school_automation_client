@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
 import { SubjectDto } from '../../typings/subject';
+import { UserDto } from '../../typings/user';
 
 const COLUMNS = (
   deleteSubject: (id: string) => void
@@ -27,17 +28,21 @@ const COLUMNS = (
   },
   {
     title: 'Клас',
-    dataIndex: 'class',
+    dataIndex: 'classes',
   },
   {
     title: 'Ким викладається',
     dataIndex: 'users',
-    render: (teacher: string) => {
-      return (
-        <Link to={`/teachers/${teacher}`} className='profile__link'>
-          {teacher[0]}
-        </Link>
-      );
+    render: (teachers: UserDto[]) => {
+      console.log(typeof teachers !== 'undefined');
+
+      if (typeof teachers !== 'undefined' && teachers.length > 0) {
+        return (
+          <Link to={`/teachers/${teachers[0].id}`} className='profile__link'>
+            {teachers[0].name}
+          </Link>
+        );
+      }
     },
   },
   {

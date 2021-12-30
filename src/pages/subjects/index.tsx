@@ -4,30 +4,26 @@ import { useHistory } from 'react-router-dom';
 import Table from '../../components/table';
 import COLUMNS from './columns';
 
-import { UserDto } from '../../typings/user';
-
-import { SUBJECTS } from '../../MOCK/subject';
-import { userService } from '../../services/userService';
-import { Role } from '../../utils/enums';
+import { subjectService } from '../../services/subjectService';
+import { SubjectDto } from '../../typings/subject';
 
 const Subjects: FC = () => {
   const history = useHistory();
 
-  const [subjects, setSubjects] = useState<UserDto[]>([]);
+  const [subjects, setSubjects] = useState<SubjectDto[]>([]);
 
   const redirectToAdd = () => {
     history.push('/subjects/create');
   };
 
   const getSubjects = async () => {
-    const users = await userService.allUsers();
-    const pupils = users.filter((user) => user.role === Role.Administator);
+    const subjects = await subjectService.getAll();
 
-    setSubjects(pupils);
+    setSubjects(subjects);
   };
 
   const deleteSubject = async (id: string) => {
-    await userService.deleteUserById(id);
+    await subjectService.deleteSubjectById(id);
     const filteredTeachers = subjects.filter((teacher) => teacher.id !== id);
 
     setSubjects(filteredTeachers);
@@ -40,7 +36,7 @@ const Subjects: FC = () => {
   return (
     <div>
       <Table
-        data={SUBJECTS}
+        data={subjects}
         columns={COLUMNS(deleteSubject)}
         title='Список предметів'
         buttonText='Додати предмет'
