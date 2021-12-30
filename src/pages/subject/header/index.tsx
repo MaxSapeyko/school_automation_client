@@ -20,6 +20,7 @@ const Header: FC = () => {
           className={classNames('header__btn', { disabled: false })}
           icon={<Plus />}
           type='primary'
+          htmlType='submit'
         >
           Додати
         </Button>

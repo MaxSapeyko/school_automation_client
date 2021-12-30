@@ -17,7 +17,7 @@ const COLUMNS = (
   },
   {
     title: 'Назва предмета',
-    dataIndex: 'name',
+    dataIndex: 'title',
     render: (name: string, subject: SubjectDto) => {
       return (
         <Link to={`/subjects/${subject.id}`} className='profile__link'>
@@ -34,7 +34,7 @@ const COLUMNS = (
     title: 'Ким викладається',
     dataIndex: 'users',
     render: (teachers: UserDto[]) => {
-      console.log(typeof teachers !== 'undefined');
+      console.log(typeof teachers === 'undefined');
 
       if (typeof teachers !== 'undefined' && teachers.length > 0) {
         return (

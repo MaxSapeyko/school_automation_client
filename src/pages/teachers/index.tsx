@@ -23,7 +23,7 @@ const Teachers: FC = () => {
 
   const getTeachers = async () => {
     const users = await userService.allUsers();
-    const pupils = users.filter((user) => user.role === Role.Administator);
+    const pupils = users.filter((user) => user.role !== Role.Student);
 
     setTeachers(pupils);
   };
