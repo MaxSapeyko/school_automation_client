@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
 
-const deleteSubject = (id: string) => {
-  // TODO connect API
-};
-
-const COLUMNS: ColumnsType<SubjectDto> = [
+const COLUMNS = (
+  deleteSubject: (id: string) => void
+): ColumnsType<SubjectDto> => [
   {
     title: '№',
     dataIndex: 'id',
@@ -43,7 +41,7 @@ const COLUMNS: ColumnsType<SubjectDto> = [
   },
   {
     title: 'Дії',
-    render: (_, subject: SubjectDto) => (
+    render: (action: any, subject: SubjectDto) => (
       <Trash
         className='trash__icon'
         onClick={() => deleteSubject(subject.id)}
