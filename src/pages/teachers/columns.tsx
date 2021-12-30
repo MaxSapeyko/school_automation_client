@@ -2,15 +2,16 @@ import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
+import { UserDto } from '../../typings/user';
+import { RoleTranslate } from '../../utils/common';
 
-const deleteUser = (id: string) => {
-  // TODO connect API
-};
-
-const COLUMNS: ColumnsType<UserDto> = [
+const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<UserDto> => [
   {
     title: '№',
     dataIndex: 'id',
+    render: (_1: any, _2: any, index: number) => {
+      return <span>{index + 1}</span>;
+    },
   },
   {
     title: 'ПІБ',
@@ -27,6 +28,9 @@ const COLUMNS: ColumnsType<UserDto> = [
   {
     title: 'Посада',
     dataIndex: 'position',
+    render: (position: string, user: UserDto) => {
+      return <span>{RoleTranslate[user.role]}</span>;
+    },
   },
   {
     title: 'Спеціалізація',

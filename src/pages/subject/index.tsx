@@ -19,17 +19,17 @@ const Subject: FC = () => {
       <Form form={form}>
         <Row justify='space-between'>
           <Col span={24}>
-            <Form.Item name='name'>
+            <Form.Item required name='name'>
               <Input placeholder='Назва предмета' />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item name='surname'>
+            <Form.Item required name='surname'>
               <Input placeholder='Оберіть клас(и)' />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item name='lastname'>
+            <Form.Item required name='lastname'>
               <Select placeholder='Виберіть вчителя який викладає предмет'>
                 {USERS_MOCK.map((user) => (
                   <Option

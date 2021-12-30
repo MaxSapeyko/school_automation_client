@@ -1,27 +1,52 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Table from '../../components/table';
 
-import { USERS_MOCK } from '../../MOCK/user';
+import { userService } from '../../services/userService';
+import { UserDto } from '../../typings/user';
+import { Role } from '../../utils/enums';
+
 import COLUMNS from './columns';
 
 import useStyles from './style';
 
 const Pupils: FC = () => {
   const classes = useStyles();
+  const history = useHistory();
 
-  const addPupil = () => {
-    // TODO add API
+  const [pupils, setPupils] = useState<UserDto[]>([]);
+
+  const redirectToAdd = () => {
+    history.push('/pupils/create');
   };
+
+  const getPupils = async () => {
+    const users = await userService.allUsers();
+    const pupils = users.filter((user) => user.role === Role.Student);
+
+    setPupils(pupils);
+  };
+
+  const deleteUser = async (id: string) => {
+    await userService.deleteUserById(id);
+    const filteredPupils = pupils.filter((pupil) => pupil.id !== id);
+
+    setPupils(filteredPupils);
+  };
+
+  useEffect(() => {
+    getPupils();
+  }, []);
 
   return (
     <div className={classes.root}>
       <Table
-        data={USERS_MOCK}
-        columns={COLUMNS}
+        data={pupils}
+        columns={COLUMNS(deleteUser)}
         title='Учні'
         buttonText='Додати учня'
-        buttonFunc={addPupil}
+        buttonFunc={redirectToAdd}
       />
     </div>
   );

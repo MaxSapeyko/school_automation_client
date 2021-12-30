@@ -1,14 +1,22 @@
 import React, { FC } from 'react';
 import { Form, Input, Button } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 import Logo from '../../components/icons/Logo';
 
 import useStyles from './style';
 import Phone from '../../components/icons/Phone';
 import Mail from '../../components/icons/Mail';
+import { authService } from '../../services/authService';
 
 const Login: FC = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const submitFormValue = async (values: any) => {
+    await authService.login(values);
+    history.push('/');
+  };
 
   return (
     <div className={classes.root}>
@@ -21,12 +29,12 @@ const Login: FC = () => {
           Для входу в систему заповніть наступну форму
         </p>
 
-        <Form>
-          <Form.Item name='email'>
+        <Form onFinish={submitFormValue}>
+          <Form.Item required name='email'>
             <Input placeholder='Email' className='form__item' />
           </Form.Item>
 
-          <Form.Item name='password'>
+          <Form.Item required name='password'>
             <Input.Password placeholder='Password' className='form__item' />
           </Form.Item>
 

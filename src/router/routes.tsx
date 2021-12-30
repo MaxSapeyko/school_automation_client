@@ -13,7 +13,7 @@ export const ROUTES: IRoute[] = [
     path: '/',
     private: true,
     exact: true,
-    component: <Profile type='own' />,
+    component: <Profile type='own' isCreate={false} />,
   },
   {
     path: '/magazine',
@@ -34,10 +34,16 @@ export const ROUTES: IRoute[] = [
     component: <Pupils />,
   },
   {
+    path: '/pupils/create',
+    private: true,
+    exact: true,
+    component: <Profile type='pupil' isCreate={true} />,
+  },
+  {
     path: '/pupils/:id',
     private: true,
     exact: true,
-    component: <Profile type='pupil' />,
+    component: <Profile type='pupil' isCreate={false} />,
   },
   {
     path: '/reporting',
@@ -58,10 +64,16 @@ export const ROUTES: IRoute[] = [
     component: <Teachers />,
   },
   {
+    path: '/teachers/create',
+    private: true,
+    exact: true,
+    component: <Profile type='teacher' isCreate={true} />,
+  },
+  {
     path: '/teachers/:id',
     private: true,
     exact: true,
-    component: <Profile type='teacher' />,
+    component: <Profile type='teacher' isCreate={false} />,
   },
   {
     path: '/subjects',

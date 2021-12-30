@@ -17,6 +17,10 @@ const useStyles = createUseStyles({
       margin: '2.4rem 0 0 0',
     },
 
+    '& .ant-form-item_no-margin': {
+      margin: '0',
+    },
+
     '& .ant-form-item': {
       maxWidth: '45.4rem',
       minWidth: '20rem',
@@ -27,6 +31,11 @@ const useStyles = createUseStyles({
         fontWeight: '600',
         height: '5.8rem',
       },
+    },
+
+    '& .header__inner': {
+      display: 'flex',
+      gap: '2rem',
     },
   },
 });

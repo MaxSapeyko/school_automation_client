@@ -15,12 +15,18 @@ import User from '../../icons/User';
 
 import useStyles from './style';
 import { Link } from 'react-router-dom';
+import { authService } from '../../../services/authService';
 
 const Sider: FC = () => {
   const classes = useStyles();
   const history = useHistory();
 
   const path = `/${history.location.pathname.split('/')[1]}`;
+
+  const logOut = () => {
+    authService.logout();
+    history.push('/login');
+  };
 
   return (
     <aside className={classes.root}>
@@ -51,7 +57,12 @@ const Sider: FC = () => {
         <Menu.Item key='/reporting' icon={<Reporting />}>
           <Link to='/reporting'>Звітність навчання</Link>
         </Menu.Item>
-        <Menu.Item key='/logout' icon={<LogOut />} className='logout__btn'>
+        <Menu.Item
+          key='/logout'
+          icon={<LogOut />}
+          className='logout__btn'
+          onClick={logOut}
+        >
           Вийти
         </Menu.Item>
       </Menu>

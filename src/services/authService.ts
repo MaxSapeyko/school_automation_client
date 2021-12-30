@@ -1,5 +1,7 @@
+import { appState } from '../context/AppState';
 import { api } from './api';
 import { storageService } from './storageService';
+import { userService } from './userService';
 
 interface LogInReq {
   email: string;
@@ -12,6 +14,11 @@ class AuthService {
   async login(req: LogInReq): Promise<void> {
     const resp = await api.post('/auth/login', req);
     storageService.set(ACCESS_TOKEN_KEY, resp.data.access_token);
+    const token: string | null = storageService.get(ACCESS_TOKEN_KEY);
+    const decodedUser: any = jwt_decode(token!);
+    const user = await userService.userById(decodedUser.id);
+
+    appState.currentUser = user;
   }
 
   logout(): void {
@@ -34,3 +41,6 @@ class AuthService {
 }
 
 export const authService = new AuthService();
+function jwt_decode(arg0: string): any {
+  throw new Error('Function not implemented.');
+}

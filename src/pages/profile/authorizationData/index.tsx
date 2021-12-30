@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { Col, Form, Input, Row } from 'antd';
 
 import useStyles from './style';
+import { ProfileProps } from '..';
 
-const OtherInfo: FC = () => {
+const OtherInfo: FC<Pick<ProfileProps, 'isCreate'>> = ({ isCreate }) => {
   const classes = useStyles();
 
   return (
@@ -12,13 +13,13 @@ const OtherInfo: FC = () => {
 
       <Row gutter={[0, 0]} className='info__items'>
         <Col span={12}>
-          <Form.Item name='email'>
-            <Input />
+          <Form.Item required name='email'>
+            <Input placeholder='Логін' disabled={!isCreate} />
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item name='password'>
-            <Input />
+          <Form.Item required name='password'>
+            <Input placeholder=':password' disabled={!isCreate} />
           </Form.Item>
         </Col>
       </Row>
