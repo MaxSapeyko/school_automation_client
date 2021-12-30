@@ -20,6 +20,7 @@ const Table: FC<TableProps & HeaderProps> = ({
       <Header title={title} buttonText={buttonText} buttonFunc={buttonFunc} />
 
       <AntTable
+        rowKey={(record) => record.id}
         columns={columns}
         dataSource={data}
         pagination={{

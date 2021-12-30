@@ -6,6 +6,7 @@ import useForm from 'antd/lib/form/hooks/useForm';
 
 import { userService } from '../../services/userService';
 import { storageService } from '../../services/storageService';
+import { authService } from '../../services/authService';
 
 import { UserDto } from '../../typings/user';
 
@@ -32,13 +33,19 @@ const Profile: FC<ProfileProps> = ({ type, isCreate }) => {
   const userId = history.location.pathname.split('/')[2];
   const [user, setUser] = useState<UserDto | null>(null);
 
-  const getUser = async (userId: string) => {
-    const user = await userService.userById(userId);
+  const getUser = async (id: string) => {
+    try {
+      if (!userId) {
+        const user = await userService.userById(id);
 
-    setUser(user);
-    form.setFieldsValue({
-      ...user,
-    });
+        setUser(user);
+        form.setFieldsValue({
+          ...user,
+        });
+      }
+    } catch (error) {
+      authService.logout();
+    }
   };
 
   const createUser = async (values: any) => {

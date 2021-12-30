@@ -29,7 +29,6 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
         <Form.Item required name='role' className='ant-form-item_no-margin'>
           <Select
             disabled={!isCreate}
-            defaultValue={user?.role}
             placeholder='Оберіть роль'
             className='header__select'
           >
@@ -54,7 +53,6 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
             <Select
               disabled={!isCreate}
               placeholder='Оберіть клас'
-              defaultValue={user?.class}
               className='header__select'
             >
               <Option value='1'>1</Option>
@@ -102,7 +100,6 @@ const Header: FC<Pick<ProfileProps, 'type'> & HeaderProps> = ({
         <Form.Item required name='role' className='ant-form-item_no-margin'>
           <Select
             disabled={!isCreate}
-            defaultValue={user?.role}
             placeholder='Оберіть роль'
             className='header__select'
           >
