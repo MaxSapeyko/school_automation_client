@@ -18,6 +18,7 @@ const Subjects: FC = () => {
 
   const getSubjects = async () => {
     const subjects = await subjectService.getAll();
+    console.log(subjects);
 
     setSubjects(subjects);
   };
@@ -28,6 +29,7 @@ const Subjects: FC = () => {
 
     setSubjects(filteredTeachers);
   };
+  const columns = COLUMNS(deleteSubject);
 
   useEffect(() => {
     getSubjects();
@@ -37,7 +39,7 @@ const Subjects: FC = () => {
     <div>
       <Table
         data={subjects}
-        columns={COLUMNS(deleteSubject)}
+        columns={columns}
         title='Список предметів'
         buttonText='Додати предмет'
         buttonFunc={redirectToAdd}

@@ -34,8 +34,6 @@ const COLUMNS = (
     title: 'Ким викладається',
     dataIndex: 'users',
     render: (teachers: UserDto[]) => {
-      console.log(typeof teachers === 'undefined');
-
       if (typeof teachers !== 'undefined' && teachers.length > 0) {
         return (
           <Link to={`/teachers/${teachers[0].id}`} className='profile__link'>
