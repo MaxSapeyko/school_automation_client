@@ -1,6 +1,8 @@
 export const HEADER_HEIGHT = 80;
 export const ACCESS_TOKEN_KEY = 'access-token';
 
+export const DAYS = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+
 export const COLORS = {
   white: '#FFFFFF',
   black: '#131621',
