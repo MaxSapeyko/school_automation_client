@@ -28,12 +28,14 @@ const Subject: FC = () => {
 
   const getSubject = async (id: string) => {
     try {
-      if (!subjectId) {
+      if (subjectId) {
         const subject = await subjectService.subjectById(id);
 
         setSubject(subject);
+        setUsers(subject.users);
         form.setFieldsValue({
           ...subject,
+          user: subject?.users[0].id ?? '',
         });
       }
     } catch (error) {}
@@ -79,21 +81,24 @@ const Subject: FC = () => {
   return (
     <div className={classes.root}>
       <Form form={form} onFinish={createSubject}>
-        <Header />
+        <Header isCreateMode={!subjectId} />
         <Row justify='space-between'>
           <Col span={24}>
             <Form.Item required name='title'>
-              <Input placeholder='Назва предмета' />
+              <Input placeholder='Назва предмета' disabled={!!subjectId} />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item required name='classes'>
-              <Input placeholder='Оберіть клас(и)' />
+              <Input placeholder='Оберіть клас(и)' disabled={!!subjectId} />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item required name='user'>
-              <Select placeholder='Виберіть вчителя який викладає предмет'>
+              <Select
+                placeholder='Виберіть вчителя який викладає предмет'
+                disabled={!!subjectId}
+              >
                 {users &&
                   users.map((user) => (
                     <Option
