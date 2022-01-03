@@ -1,20 +1,45 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Table from '../../components/table';
 import COLUMNS from './columns';
 
-import { SUBJECTS } from '../../MOCK/subject';
+import { subjectService } from '../../services/subjectService';
+import { SubjectDto } from '../../typings/subject';
 
 const Subjects: FC = () => {
+  const history = useHistory();
+
+  const [subjects, setSubjects] = useState<SubjectDto[]>([]);
+
   const redirectToAdd = () => {
-    // TODO connect API
+    history.push('/subjects/create');
   };
+
+  const getSubjects = async () => {
+    const subjects = await subjectService.getAll();
+    console.log(subjects);
+
+    setSubjects(subjects);
+  };
+
+  const deleteSubject = async (id: string) => {
+    await subjectService.deleteSubjectById(id);
+    const filteredTeachers = subjects.filter((teacher) => teacher.id !== id);
+
+    setSubjects(filteredTeachers);
+  };
+  const columns = COLUMNS(deleteSubject);
+
+  useEffect(() => {
+    getSubjects();
+  }, []);
 
   return (
     <div>
       <Table
-        data={SUBJECTS}
-        columns={COLUMNS}
+        data={subjects}
+        columns={columns}
         title='Список предметів'
         buttonText='Додати предмет'
         buttonFunc={redirectToAdd}

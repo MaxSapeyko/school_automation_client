@@ -1,42 +1,111 @@
-import React, { FC } from 'react';
-import { Col, Form, Input, Row, Select } from 'antd';
+import React, { FC, useEffect, useState } from 'react';
+import { Col, Form, Input, notification, Row, Select } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 
 import Header from './header';
 
+import { SubjectDto } from '../../typings/subject';
+import { subjectService } from '../../services/subjectService';
+import { useHistory } from 'react-router-dom';
+import { userService } from '../../services/userService';
+import { Role } from '../../utils/enums';
+import { UserDto } from '../../typings/user';
+
 import useStyles from './style';
-import { USERS_MOCK } from '../../MOCK/user';
 
 const { Option } = Select;
+const UUID_REGEXP = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 const Subject: FC = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [form] = useForm();
+
+  const subjectId = history.location.pathname.split('/')[2];
+
+  const [users, setUsers] = useState<UserDto[]>([]);
+  const [subject, setSubject] = useState<SubjectDto | null>(null);
+
+  const getSubject = async (id: string) => {
+    try {
+      if (subjectId) {
+        const subject = await subjectService.subjectById(id);
+
+        setSubject(subject);
+        setUsers(subject.users);
+        form.setFieldsValue({
+          ...subject,
+          user: subject?.users[0].id ?? '',
+        });
+      }
+    } catch (error) {}
+  };
+
+  const createSubject = async (values: any) => {
+    const classes = values.classes.split(',');
+
+    try {
+      const body = {
+        title: values.title,
+        classes: classes,
+        users: values.user,
+      };
+
+      const newSubject = await subjectService.createSubject(body);
+
+      history.push(`/subjects/${newSubject.id}`);
+    } catch (error) {
+      notification.error({
+        message: 'Error',
+        description: 'Bad Request',
+      });
+    }
+  };
+
+  const getPupils = async () => {
+    const users = await userService.allUsers();
+    const teachers = users.filter((user) => user.role === Role.Teacher);
+
+    setUsers(subjectId.match(UUID_REGEXP) ? subject!.users : teachers);
+  };
+
+  useEffect(() => {
+    if (subjectId.match(UUID_REGEXP)) {
+      getSubject(subjectId);
+    } else {
+      getPupils();
+    }
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className={classes.root}>
-      <Header />
-      <Form form={form}>
+      <Form form={form} onFinish={createSubject}>
+        <Header isCreateMode={!subjectId} />
         <Row justify='space-between'>
           <Col span={24}>
-            <Form.Item required name='name'>
-              <Input placeholder='Назва предмета' />
+            <Form.Item required name='title'>
+              <Input placeholder='Назва предмета' disabled={!!subjectId} />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item required name='surname'>
-              <Input placeholder='Оберіть клас(и)' />
+            <Form.Item required name='classes'>
+              <Input placeholder='Оберіть клас(и)' disabled={!!subjectId} />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item required name='lastname'>
-              <Select placeholder='Виберіть вчителя який викладає предмет'>
-                {USERS_MOCK.map((user) => (
-                  <Option
-                    key={user.id}
-                    value={user.id}
-                  >{`${user.lastname} ${user.name} ${user.surname}`}</Option>
-                ))}
+            <Form.Item required name='user'>
+              <Select
+                placeholder='Виберіть вчителя який викладає предмет'
+                disabled={!!subjectId}
+              >
+                {users &&
+                  users.map((user) => (
+                    <Option
+                      key={user.id}
+                      value={user.id}
+                    >{`${user.lastname} ${user.name} ${user.surname}`}</Option>
+                  ))}
               </Select>
             </Form.Item>
           </Col>

@@ -15,6 +15,7 @@ import useStyles from './style';
 
 const Layout: FC = ({ children }) => {
   const classes = useStyles();
+
   const getUser = async (id: string) => {
     try {
       const user = await userService.userById(id);
@@ -25,11 +26,14 @@ const Layout: FC = ({ children }) => {
   };
 
   useEffect(() => {
-    const token: string | null = storageService.get(ACCESS_TOKEN_KEY);
-    const decodedUser: any = jwt_decode(token!);
+    if (!appState.currentUser) {
+      const token: string | null = storageService.get(ACCESS_TOKEN_KEY);
+      const decodedUser: any = jwt_decode(token!);
 
-    getUser(decodedUser.id);
-  }, []);
+      getUser(decodedUser.id);
+    }
+    // eslint-disable-next-line
+  }, [appState.currentUser]);
 
   return (
     <section className={classes.root}>

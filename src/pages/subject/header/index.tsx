@@ -6,7 +6,11 @@ import { Button } from 'antd';
 import LeftArrow from '../../../components/icons/LeftArrow';
 import Plus from '../../../components/icons/Plus';
 
-const Header: FC = () => {
+interface HeaderProps {
+  isCreateMode: boolean;
+}
+
+const Header: FC<HeaderProps> = ({ isCreateMode }) => {
   return (
     <div className='content__header'>
       <Link to='/subjects' className='back__link'>
@@ -16,10 +20,11 @@ const Header: FC = () => {
 
       <div className='header__actions'>
         <Button
-          disabled={false}
-          className={classNames('header__btn', { disabled: false })}
+          disabled={!isCreateMode}
+          className={classNames('header__btn', { disabled: !isCreateMode })}
           icon={<Plus />}
           type='primary'
+          htmlType='submit'
         >
           Додати
         </Button>

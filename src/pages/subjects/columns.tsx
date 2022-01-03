@@ -2,12 +2,12 @@ import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
+import { SubjectDto } from '../../typings/subject';
+import { UserDto } from '../../typings/user';
 
-const deleteSubject = (id: string) => {
-  // TODO connect API
-};
-
-const COLUMNS: ColumnsType<SubjectDto> = [
+const COLUMNS = (
+  deleteSubject: (id: string) => void
+): ColumnsType<SubjectDto> => [
   {
     title: '№',
     dataIndex: 'id',
@@ -17,7 +17,7 @@ const COLUMNS: ColumnsType<SubjectDto> = [
   },
   {
     title: 'Назва предмета',
-    dataIndex: 'name',
+    dataIndex: 'title',
     render: (name: string, subject: SubjectDto) => {
       return (
         <Link to={`/subjects/${subject.id}`} className='profile__link'>
@@ -28,22 +28,24 @@ const COLUMNS: ColumnsType<SubjectDto> = [
   },
   {
     title: 'Клас',
-    dataIndex: 'class',
+    dataIndex: 'classes',
   },
   {
     title: 'Ким викладається',
-    dataIndex: 'teacher',
-    render: (teacher: string) => {
-      return (
-        <Link to={`/subjects/${teacher}`} className='profile__link'>
-          {teacher}
-        </Link>
-      );
+    dataIndex: 'users',
+    render: (teachers: UserDto[]) => {
+      if (typeof teachers !== 'undefined' && teachers.length > 0) {
+        return (
+          <Link to={`/teachers/${teachers[0].id}`} className='profile__link'>
+            {teachers[0].name}
+          </Link>
+        );
+      }
     },
   },
   {
     title: 'Дії',
-    render: (_, subject: SubjectDto) => (
+    render: (action: any, subject: SubjectDto) => (
       <Trash
         className='trash__icon'
         onClick={() => deleteSubject(subject.id)}
