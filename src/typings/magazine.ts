@@ -7,3 +7,8 @@ export interface GradeDto {
   grade: number;
   date: Date;
 }
+
+export interface MagazineDateModel {
+  date: moment.Moment | null;
+  dateString: string;
+}

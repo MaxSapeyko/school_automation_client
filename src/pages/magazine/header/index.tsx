@@ -1,27 +1,50 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DatePicker, Select } from 'antd';
+import moment from 'moment';
+
 import useStyles from './style';
+import { subjectService } from '../../../services/subjectService';
+import { SubjectDto } from '../../../typings/subject';
 
 const { Option } = Select;
 
-const Header: FC = () => {
+interface HeaderProps {
+  changeMagazineDates: (date: moment.Moment | null, dateString: string) => void;
+}
+
+const Header: FC<HeaderProps> = ({ changeMagazineDates }) => {
   const classes = useStyles();
 
-  function onChange(date: any, dateString: string) {
-    console.log(date, dateString);
-  }
+  const [subjects, setSubjects] = useState<SubjectDto[]>([]);
+
+  const getSubjects = async () => {
+    const subjects = await subjectService.getAll();
+
+    setSubjects(subjects);
+  };
+
+  useEffect(() => {
+    getSubjects();
+  }, []);
 
   return (
     <div className={classes.root}>
       <div className='col'>
         <Select placeholder='Оберіть клас' className='header__select'>
-          <Option value='1'>1</Option>
-          <Option value='2'>2</Option>
+          {subjects.map((item) => (
+            <Option key={item.id} value={item.id}>
+              {item.title}
+            </Option>
+          ))}
         </Select>
+
         <Select placeholder='Оберіть предмет' className='header__select'>
-          <Option value='1'>1</Option>
-          <Option value='2'>2</Option>
+          {subjects.map((item) => (
+            <Option key={item.id} value={item.id}>
+              {item.title}
+            </Option>
+          ))}
         </Select>
         <div>
           <span className='teacher__title'>Вчитель: </span>
@@ -30,9 +53,10 @@ const Header: FC = () => {
       </div>
       <div className='col'>
         <DatePicker
+          defaultValue={moment(new Date())}
           className='header__select'
           placeholder='Оберіть місяць'
-          onChange={onChange}
+          onChange={changeMagazineDates}
           picker='month'
         />
       </div>

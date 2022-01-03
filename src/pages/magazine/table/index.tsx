@@ -1,16 +1,19 @@
 import React, { FC } from 'react';
 import { Table } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
+
 import COLUMNS from './columns';
 import { DAYS } from '../../../utils/common';
-import { GradeDto } from '../../../typings/magazine';
-import { ColumnsType } from 'antd/lib/table';
+import { GradeDto, MagazineDateModel } from '../../../typings/magazine';
+
 import useStyles from './style';
 
 interface MagazineTableProps {
   data: GradeDto[];
+  magazineDate: MagazineDateModel;
 }
 
-const MagazineTable: FC<MagazineTableProps> = ({ data }) => {
+const MagazineTable: FC<MagazineTableProps> = ({ data, magazineDate }) => {
   const classes = useStyles();
   const func = () => {};
 
@@ -23,8 +26,9 @@ const MagazineTable: FC<MagazineTableProps> = ({ data }) => {
   };
 
   const generateMagazine = (): ColumnsType<GradeDto> => {
-    const month = 10;
-    const year = 2021;
+    const selectedDate = new Date(magazineDate.dateString);
+    const month = selectedDate.getMonth();
+    const year = selectedDate.getFullYear();
     const daysInMonth = getDaysInMonth(month, year);
     const daysInMonthArray = new Array(daysInMonth);
 

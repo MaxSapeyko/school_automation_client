@@ -1,14 +1,28 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { MagazineDateModel } from '../../typings/magazine';
 
 import Header from './header';
 import Table from './table';
 
 const Magazine: FC = () => {
+  const [magazineDate, setMagazineDate] = useState<MagazineDateModel>({
+    date: null,
+    dateString: new Date().toDateString(),
+  });
+
+  const changeMagazineDates = (date: any, dateString: string) => {
+    console.log(date, dateString);
+    setMagazineDate({
+      date: date,
+      dateString: dateString,
+    });
+  };
+
   return (
     <div>
-      <Header />
+      <Header changeMagazineDates={changeMagazineDates} />
 
-      <Table data={[]} />
+      <Table data={[]} magazineDate={magazineDate} />
     </div>
   );
 };
