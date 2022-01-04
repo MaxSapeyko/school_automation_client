@@ -1,4 +1,5 @@
 import { Role } from '../utils/enums';
+import { GradeDto } from './magazine';
 
 export interface UserDto {
   id: string;
@@ -17,6 +18,7 @@ export interface UserDto {
   universityAddress: string;
   position: string;
   specialization: string;
+  grade: GradeDto | null;
   classes: string[];
 }
 

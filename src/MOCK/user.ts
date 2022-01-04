@@ -19,11 +19,13 @@ export const USER_MOCK: UserDto = {
   dateOfBirth: '12.12.2012',
   sex: 'Ж',
   class: '10a',
+  grade: null,
 };
 
 export const USERS_MOCK: UserDto[] = [
   {
     id: '1',
+    grade: null,
     role: Role.Student,
     name: 'Валентин',
     surname: 'Вікторович',
@@ -43,6 +45,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '2',
+    grade: null,
     role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
@@ -62,6 +65,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '3',
+    grade: null,
     role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
@@ -81,6 +85,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '4',
+    grade: null,
     role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
@@ -100,6 +105,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '5',
+    grade: null,
     role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
@@ -119,6 +125,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '6',
+    grade: null,
     name: 'Петро',
     role: Role.Student,
     surname: 'Вікторович',
@@ -138,6 +145,7 @@ export const USERS_MOCK: UserDto[] = [
   },
   {
     id: '7',
+    grade: null,
     role: Role.Student,
     name: 'Петро',
     surname: 'Вікторович',
@@ -158,6 +166,7 @@ export const USERS_MOCK: UserDto[] = [
   {
     role: Role.Student,
     id: '8',
+    grade: null,
     name: 'Петро',
     surname: 'Вікторович',
     lastname: 'Самойленко',

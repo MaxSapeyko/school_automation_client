@@ -1,9 +1,9 @@
 import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
-import { GradeDto } from '../../../typings/magazine';
+import { UserDto } from '../../../typings/user';
 
-const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<GradeDto> => [
+const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<UserDto> => [
   {
     title: '№',
     dataIndex: 'id',
@@ -18,12 +18,12 @@ const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<GradeDto> => [
     dataIndex: 'name',
     fixed: 'left',
     width: 150,
-    render: (_name: string, grade: GradeDto) => {
+    render: (_name: string, user: UserDto) => {
       return (
         <Link
-          to={`/pupils/${grade.user.id}`}
+          to={`/pupils/${user.id}`}
           className='profile__link'
-        >{`${grade.user.lastname} ${grade.user.name} ${grade.user.surname}`}</Link>
+        >{`${user.lastname} ${user.name} ${user.surname}`}</Link>
       );
     },
   },

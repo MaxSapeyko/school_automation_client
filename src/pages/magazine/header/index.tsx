@@ -11,9 +11,15 @@ const { Option } = Select;
 
 interface HeaderProps {
   changeMagazineDates: (date: moment.Moment | null, dateString: string) => void;
+  setMagazineSubject: React.Dispatch<React.SetStateAction<SubjectDto | null>>;
+  setSelectedClass: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Header: FC<HeaderProps> = ({ changeMagazineDates }) => {
+const Header: FC<HeaderProps> = ({
+  changeMagazineDates,
+  setMagazineSubject,
+  setSelectedClass,
+}) => {
   const classes = useStyles();
 
   const [subjects, setSubjects] = useState<SubjectDto[]>([]);
@@ -31,7 +37,13 @@ const Header: FC<HeaderProps> = ({ changeMagazineDates }) => {
   return (
     <div className={classes.root}>
       <div className='col'>
-        <Select placeholder='Оберіть клас' className='header__select'>
+        <Select
+          placeholder='Оберіть клас'
+          className='header__select'
+          onChange={(value) => {
+            setSelectedClass(value ? Number(value) : 0);
+          }}
+        >
           {new Array(12).fill(0).map((item, index) => (
             <Option key={index} value={index + 1}>
               {index + 1}
@@ -39,7 +51,15 @@ const Header: FC<HeaderProps> = ({ changeMagazineDates }) => {
           ))}
         </Select>
 
-        <Select placeholder='Оберіть предмет' className='header__select'>
+        <Select
+          placeholder='Оберіть предмет'
+          className='header__select'
+          onChange={(value) => {
+            setMagazineSubject(
+              subjects.find((subject) => subject.id === value)!
+            );
+          }}
+        >
           {subjects.map((item) => (
             <Option key={item.id} value={item.id}>
               {item.title}

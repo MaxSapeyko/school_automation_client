@@ -11,6 +11,7 @@ export const COLORS = {
   gray: '#BBBBBB',
   dividers: '#E1E1E1',
   lightBlue: '#ECF0F4',
+  bad: '#FFB3B3',
 };
 
 export const SexTranslate = {

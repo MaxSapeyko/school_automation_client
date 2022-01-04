@@ -2,6 +2,7 @@ import { SubjectDto } from './subject';
 import { UserDto } from './user';
 
 export interface GradeDto {
+  id: string;
   user: UserDto;
   subject: SubjectDto;
   grade: number;
@@ -11,4 +12,11 @@ export interface GradeDto {
 export interface MagazineDateModel {
   date: moment.Moment | null;
   dateString: string;
+}
+
+export interface CreateGradeDto {
+  grade: number;
+  date: Date;
+  userId: string;
+  subjectId: string;
 }
