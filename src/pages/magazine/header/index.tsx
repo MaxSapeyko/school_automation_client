@@ -32,9 +32,9 @@ const Header: FC<HeaderProps> = ({ changeMagazineDates }) => {
     <div className={classes.root}>
       <div className='col'>
         <Select placeholder='Оберіть клас' className='header__select'>
-          {subjects.map((item) => (
-            <Option key={item.id} value={item.id}>
-              {item.title}
+          {new Array(12).fill(0).map((item, index) => (
+            <Option key={index} value={index + 1}>
+              {index + 1}
             </Option>
           ))}
         </Select>
