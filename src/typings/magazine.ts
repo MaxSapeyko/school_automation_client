@@ -4,6 +4,7 @@ import { UserDto } from './user';
 export interface GradeDto {
   id: string;
   user: UserDto;
+  userID: string;
   subject: SubjectDto;
   grade: number;
   date: Date;

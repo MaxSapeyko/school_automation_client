@@ -12,12 +12,14 @@ const { Option } = Select;
 interface HeaderProps {
   changeMagazineDates: (date: moment.Moment | null, dateString: string) => void;
   setMagazineSubject: React.Dispatch<React.SetStateAction<SubjectDto | null>>;
+  magazineSubject: SubjectDto | null;
   setSelectedClass: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Header: FC<HeaderProps> = ({
   changeMagazineDates,
   setMagazineSubject,
+  magazineSubject,
   setSelectedClass,
 }) => {
   const classes = useStyles();
@@ -66,10 +68,14 @@ const Header: FC<HeaderProps> = ({
             </Option>
           ))}
         </Select>
-        <div>
-          <span className='teacher__title'>Вчитель: </span>
-          <Link to='teachers/ID'>teacher</Link>
-        </div>
+        {magazineSubject && (
+          <div>
+            <span className='teacher__title'>Вчитель: </span>
+            <Link
+              to={`teachers/${magazineSubject.users[0].id}`}
+            >{`${magazineSubject.users[0].lastname} ${magazineSubject.users[0].name} ${magazineSubject.users[0].surname}`}</Link>
+          </div>
+        )}
       </div>
       <div className='col'>
         <DatePicker

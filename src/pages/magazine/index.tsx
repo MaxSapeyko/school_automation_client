@@ -46,6 +46,7 @@ const Magazine: FC = () => {
       <Header
         changeMagazineDates={changeMagazineDates}
         setMagazineSubject={setMagazineSubject}
+        magazineSubject={magazineSubject}
         setSelectedClass={setSelectedClass}
       />
 

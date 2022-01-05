@@ -1,22 +1,31 @@
-import React, { FC, useState } from 'react';
-import { Button, Modal, Select, Table } from 'antd';
-import { ColumnsType } from 'antd/lib/table';
-import Form from 'antd/lib/form/Form';
+import React, { FC, useEffect, useState } from 'react';
+import { Form, Button, Modal, Select, Table } from 'antd';
+import { ColumnGroupType, ColumnsType, ColumnType } from 'antd/lib/table';
 
 import COLUMNS from './columns';
 import { gradeService } from '../../../services/gradeService';
 import { DAYS } from '../../../utils/common';
-import { CreateGradeDto, MagazineDateModel } from '../../../typings/magazine';
+import {
+  CreateGradeDto,
+  GradeDto,
+  MagazineDateModel,
+} from '../../../typings/magazine';
 import { UserDto } from '../../../typings/user';
 
 import useStyles from './style';
 import { SubjectDto } from '../../../typings/subject';
 import classNames from 'classnames';
+import { compareTwoDateWithoutTime } from '../../../helpers';
 
 interface MagazineTableProps {
   data: UserDto[];
   magazineSubject: SubjectDto | null;
   magazineDate: MagazineDateModel;
+}
+
+interface CellModel {
+  date: Date;
+  user: UserDto | null;
 }
 
 const { Option } = Select;
@@ -29,7 +38,14 @@ const MagazineTable: FC<MagazineTableProps> = ({
   const classes = useStyles();
 
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedCell, setSelectedCell] = useState<UserDto | null>(null);
+  const [columns, setColumns] = useState<
+    (ColumnGroupType<UserDto> | ColumnType<UserDto>)[]
+  >([]);
+  const [selectedCell, setSelectedCell] = useState<CellModel>({
+    user: null,
+    date: new Date(),
+  });
+  const [grades, setGrades] = useState<GradeDto[]>([]);
 
   const getDaysInMonth = (month: number, year: number) => {
     return new Date(year, month, 0).getDate();
@@ -39,21 +55,23 @@ const MagazineTable: FC<MagazineTableProps> = ({
     return DAYS[date.getDay()];
   };
 
-  const submitGrade = async () => {
+  const submitGrade = async (values: any) => {
     try {
       const body: CreateGradeDto = {
-        grade: 0,
-        date: new Date(),
-        userId: selectedCell!.id,
+        grade: Number(values.grade),
+        date: selectedCell.date,
+        userId: selectedCell!.user!.id,
         subjectId: magazineSubject!.id,
       };
 
       const grade = await gradeService.createGrade(body);
-      console.log(grade);
+
+      setGrades([...grades, grade]);
+      setIsVisible(false);
     } catch (error) {}
   };
 
-  const generateMagazine = (): ColumnsType<UserDto> => {
+  const generateMagazine = (grades: GradeDto[]) => {
     const selectedDate = new Date(magazineDate.dateString);
     const month = selectedDate.getMonth();
     const year = selectedDate.getFullYear();
@@ -63,7 +81,7 @@ const MagazineTable: FC<MagazineTableProps> = ({
     const daysColumns: ColumnsType<UserDto> = daysInMonthArray
       .fill(0)
       .map((_: number, index: number) => {
-        const currentDate = new Date(year, month, index + 1);
+        const currentDate = new Date(year, month, index + 1, 0, 0, 0, 0);
         const dayName = getWeekDay(currentDate);
 
         return {
@@ -82,30 +100,47 @@ const MagazineTable: FC<MagazineTableProps> = ({
             return {
               onClick: () => {
                 if (dayName !== 'вс') {
-                  setSelectedCell(record);
+                  setSelectedCell({
+                    user: record,
+                    date: currentDate,
+                  });
                   setIsVisible(true);
                 }
               },
             };
           },
-          render: (_1: any, user: UserDto, index: number) => {
+          render: (_1: any, user: UserDto) => {
+            const userGrades = grades.filter(
+              (grade) =>
+                grade.userID === user.id &&
+                grade.subject.id === magazineSubject?.id
+            );
+
+            const grade = userGrades.find((grade) =>
+              compareTwoDateWithoutTime(new Date(grade.date), currentDate)
+            );
+
+            const cell = grade
+              ? Number(grade.grade) > 0
+                ? grade.grade
+                : 'Н'
+              : '0';
+
             return (
               <div
-                className={classNames({
-                  'no-grade': !user?.grade?.grade,
-                  'bad-grade':
-                    user?.grade &&
-                    user?.grade?.grade <= 3 &&
-                    user?.grade?.grade > 0,
-                  'good-grade': user?.grade && user?.grade?.grade >= 10,
-                  miss: user?.grade && user?.grade?.grade === 0,
+                onClick={(event) => {
+                  if (cell !== '0') {
+                    event.stopPropagation();
+                  }
+                }}
+                className={classNames('cell__inner', {
+                  'no-grade': typeof grade?.grade === 'undefined',
+                  'bad-grade': grade && grade.grade <= 3 && grade.grade > 0,
+                  'good-grade': grade?.grade && grade?.grade >= 10,
+                  miss: grade?.grade && grade?.grade === 0,
                 })}
               >
-                {user?.grade
-                  ? user.grade.grade > 0
-                    ? user.grade.grade
-                    : 'Н'
-                  : '0'}
+                {cell}
               </div>
             );
           },
@@ -114,14 +149,27 @@ const MagazineTable: FC<MagazineTableProps> = ({
 
     const columns = [...COLUMNS(() => {}), ...daysColumns];
 
-    return columns;
+    setColumns(columns);
   };
+
+  const getGrades = async () => {
+    const grades = await gradeService.allGrades();
+    setGrades(grades);
+    generateMagazine(grades);
+  };
+
+  useEffect(() => {
+    if (!isVisible) {
+      getGrades();
+    }
+    // eslint-disable-next-line
+  }, [isVisible, magazineDate]);
 
   return (
     <div className={classes.root}>
       <Table
         bordered
-        columns={generateMagazine()}
+        columns={columns}
         dataSource={data}
         scroll={{ x: 1500, y: 700 }}
         rowKey={(record) => record.id}
@@ -136,15 +184,16 @@ const MagazineTable: FC<MagazineTableProps> = ({
         centered
         onCancel={() => setIsVisible(false)}
       >
-        <Form onFinish={submitGrade}>
-          <Select defaultValue={0}>
-            {new Array(13).fill(0).map((item, index) => (
-              <Option key={index} value={index}>
-                {index === 0 ? 'Н' : index}
-              </Option>
-            ))}
-          </Select>
-
+        <Form initialValues={{ grade: 0 }} onFinish={submitGrade}>
+          <Form.Item name={['grade']}>
+            <Select>
+              {new Array(13).fill(0).map((item, index) => (
+                <Option key={index} value={index}>
+                  {index === 0 ? 'Н' : index}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
           <Button htmlType='submit' type='primary'>
             Поставити
           </Button>

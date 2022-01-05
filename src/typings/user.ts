@@ -19,6 +19,7 @@ export interface UserDto {
   position: string;
   specialization: string;
   grade: GradeDto | null;
+  grades: GradeDto[];
   classes: string[];
 }
 

@@ -15,6 +15,14 @@ const useStyles = createUseStyles({
     },
 
     '& .ant-table-cell': {
+      '& .cell__inner': {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '6.1rem',
+        width: '100%',
+      },
+
       '&.holiday': {
         cursor: 'not-allowed',
         backgroundColor: COLORS.lightBlue,
@@ -31,6 +39,7 @@ const useStyles = createUseStyles({
 
       '&.grade': {
         cursor: 'pointer',
+        padding: '0',
       },
 
       '& .no-grade': {
