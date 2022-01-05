@@ -18,7 +18,6 @@ const Subjects: FC = () => {
 
   const getSubjects = async () => {
     const subjects = await subjectService.getAll();
-    console.log(subjects);
 
     setSubjects(subjects);
   };

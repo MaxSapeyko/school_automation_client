@@ -1,6 +1,8 @@
 export const HEADER_HEIGHT = 80;
 export const ACCESS_TOKEN_KEY = 'access-token';
 
+export const DAYS = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+
 export const COLORS = {
   white: '#FFFFFF',
   black: '#131621',
@@ -9,6 +11,7 @@ export const COLORS = {
   gray: '#BBBBBB',
   dividers: '#E1E1E1',
   lightBlue: '#ECF0F4',
+  bad: '#FFB3B3',
 };
 
 export const SexTranslate = {
