@@ -5,11 +5,11 @@ import { useHistory } from 'react-router';
 import Logo from '../../icons/Logo';
 import LogOut from '../../icons/LogOut';
 import Magazine from '../../icons/Magazine';
-import News from '../../icons/News';
 import Subjects from '../../icons/Subjects';
 import Pupils from '../../icons/Pupils';
-import Reporting from '../../icons/Reporting';
-import Shedule from '../../icons/Shedule';
+// import News from '../../icons/News';
+// import Reporting from '../../icons/Reporting';
+// import Shedule from '../../icons/Shedule';
 import Teachers from '../../icons/Teachers';
 import User from '../../icons/User';
 
@@ -45,18 +45,18 @@ const Sider: FC = () => {
         <Menu.Item key='/subjects' icon={<Subjects />}>
           <Link to='/subjects'>Список предметів</Link>
         </Menu.Item>
-        <Menu.Item key='/shedule' icon={<Shedule />}>
-          <Link to='/shedule'>Розклад занять</Link>
-        </Menu.Item>
         <Menu.Item key='/magazine' icon={<Magazine />}>
           <Link to='/magazine'>Електронний журнал</Link>
+        </Menu.Item>
+        {/* <Menu.Item key='/shedule' icon={<Shedule />}>     // Coming soon
+          <Link to='/shedule'>Розклад занять</Link>
         </Menu.Item>
         <Menu.Item key='/news' icon={<News />}>
           <Link to='/news'>Новини</Link>
         </Menu.Item>
         <Menu.Item key='/reporting' icon={<Reporting />}>
           <Link to='/reporting'>Звітність навчання</Link>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item
           key='/logout'
           icon={<LogOut />}
