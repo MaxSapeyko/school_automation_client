@@ -2,8 +2,10 @@ import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
+import { appState } from '../../context/AppState';
 import { UserDto } from '../../typings/user';
 import { RoleTranslate } from '../../utils/common';
+import { Role } from '../../utils/enums';
 
 const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<UserDto> => [
   {
@@ -47,6 +49,7 @@ const COLUMNS = (deleteUser: (id: string) => void): ColumnsType<UserDto> => [
   },
   {
     title: 'Дії',
+    className: appState.currentUser?.role === Role.Student ? 'hide' : 'show',
     render: (_, user: UserDto) => (
       <Trash className='trash__icon' onClick={() => deleteUser(user.id)} />
     ),

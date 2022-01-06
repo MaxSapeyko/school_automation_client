@@ -2,8 +2,10 @@ import { ColumnsType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
 
 import Trash from '../../components/icons/Trash';
+import { appState } from '../../context/AppState';
 import { SubjectDto } from '../../typings/subject';
 import { UserDto } from '../../typings/user';
+import { Role } from '../../utils/enums';
 
 const COLUMNS = (
   deleteSubject: (id: string) => void
@@ -45,6 +47,7 @@ const COLUMNS = (
   },
   {
     title: 'Дії',
+    className: appState.currentUser?.role === Role.Student ? 'hide' : 'show',
     render: (action: any, subject: SubjectDto) => (
       <Trash
         className='trash__icon'

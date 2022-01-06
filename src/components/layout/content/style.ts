@@ -41,8 +41,8 @@ const useStyles = createUseStyles({
       backgroundColor: COLORS.blue,
 
       '&.disabled': {
-        backgroundColor: COLORS.dividers
-      }
+        backgroundColor: COLORS.dividers,
+      },
     },
 
     '& .header__actions': {
@@ -60,7 +60,7 @@ const useStyles = createUseStyles({
 
       '& .ant-switch': {
         marginRight: '1rem',
-      }
+      },
     },
 
     '& .header__select .ant-select-selector': {
@@ -73,6 +73,10 @@ const useStyles = createUseStyles({
         alignItems: 'center',
         fontWeight: '500',
       },
+    },
+
+    '& .ant-table-cell.hide': {
+      display: 'none',
     },
   },
 });
