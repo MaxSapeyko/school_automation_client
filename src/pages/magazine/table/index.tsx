@@ -16,11 +16,14 @@ import useStyles from './style';
 import { SubjectDto } from '../../../typings/subject';
 import classNames from 'classnames';
 import { compareTwoDateWithoutTime } from '../../../helpers';
+import { appState } from '../../../context/AppState';
+import { Role } from '../../../utils/enums';
 
 interface MagazineTableProps {
   data: UserDto[];
   magazineSubject: SubjectDto | null;
   magazineDate: MagazineDateModel;
+  selectedClass: number;
 }
 
 interface CellModel {
@@ -34,6 +37,7 @@ const MagazineTable: FC<MagazineTableProps> = ({
   data,
   magazineDate,
   magazineSubject,
+  selectedClass,
 }) => {
   const classes = useStyles();
 
@@ -99,7 +103,10 @@ const MagazineTable: FC<MagazineTableProps> = ({
           onCell: (record, index) => {
             return {
               onClick: () => {
-                if (dayName !== 'вс') {
+                if (
+                  dayName !== 'вс' ||
+                  appState.currentUser?.role !== Role.Student
+                ) {
                   setSelectedCell({
                     user: record,
                     date: currentDate,
@@ -159,11 +166,11 @@ const MagazineTable: FC<MagazineTableProps> = ({
   };
 
   useEffect(() => {
-    if (!isVisible) {
+    if (!isVisible && magazineDate && magazineSubject && selectedClass) {
       getGrades();
     }
     // eslint-disable-next-line
-  }, [isVisible, magazineDate]);
+  }, [isVisible, magazineDate, magazineSubject, selectedClass]);
 
   return (
     <div className={classes.root}>

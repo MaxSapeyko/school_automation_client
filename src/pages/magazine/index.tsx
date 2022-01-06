@@ -57,6 +57,7 @@ const Magazine: FC = () => {
             : []
         }
         magazineDate={magazineDate}
+        selectedClass={selectedClass}
         magazineSubject={magazineSubject}
       />
     </div>
