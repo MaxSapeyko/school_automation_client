@@ -36,14 +36,12 @@ const Profile: FC<ProfileProps> = ({ type, isCreate }) => {
   const getUser = async (id: string) => {
     try {
       const user = await userService.userById(id);
-
       setUser(user);
-
       form.setFieldsValue({
         ...user,
       });
     } catch (error) {
-      authService.logout();
+      if (!userId) authService.logout();
     }
   };
 

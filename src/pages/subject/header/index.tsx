@@ -20,8 +20,8 @@ const Header: FC<HeaderProps> = ({ isCreateMode }) => {
 
       <div className='header__actions'>
         <Button
-          disabled={!isCreateMode}
-          className={classNames('header__btn', { disabled: !isCreateMode })}
+          disabled={isCreateMode}
+          className={classNames('header__btn', { disabled: isCreateMode })}
           icon={<Plus />}
           type='primary'
           htmlType='submit'

@@ -104,7 +104,7 @@ const MagazineTable: FC<MagazineTableProps> = ({
             return {
               onClick: () => {
                 if (
-                  dayName !== 'вс' ||
+                  dayName !== 'вс' &&
                   appState.currentUser?.role !== Role.Student
                 ) {
                   setSelectedCell({

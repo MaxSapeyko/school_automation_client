@@ -22,6 +22,9 @@ const Subject: FC = () => {
   const [form] = useForm();
 
   const subjectId = history.location.pathname.split('/')[2];
+  const [isDisable, setIsDisable] = useState(
+    Boolean(subjectId.match(UUID_REGEXP))
+  );
 
   const [users, setUsers] = useState<UserDto[]>([]);
   const [subject, setSubject] = useState<SubjectDto | null>(null);
@@ -53,6 +56,7 @@ const Subject: FC = () => {
 
       const newSubject = await subjectService.createSubject(body);
 
+      setIsDisable(true);
       history.push(`/subjects/${newSubject.id}`);
     } catch (error) {
       notification.error({
@@ -70,7 +74,7 @@ const Subject: FC = () => {
   };
 
   useEffect(() => {
-    if (subjectId.match(UUID_REGEXP)) {
+    if (subjectId && subjectId.match(UUID_REGEXP)) {
       getSubject(subjectId);
     } else {
       getPupils();
@@ -81,23 +85,23 @@ const Subject: FC = () => {
   return (
     <div className={classes.root}>
       <Form form={form} onFinish={createSubject}>
-        <Header isCreateMode={!subjectId} />
+        <Header isCreateMode={isDisable} />
         <Row justify='space-between'>
           <Col span={24}>
             <Form.Item required name='title'>
-              <Input placeholder='Назва предмета' disabled={!!subjectId} />
+              <Input placeholder='Назва предмета' disabled={isDisable} />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item required name='classes'>
-              <Input placeholder='Оберіть клас(и)' disabled={!!subjectId} />
+              <Input placeholder='Оберіть клас(и)' disabled={isDisable} />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item required name='user'>
               <Select
                 placeholder='Виберіть вчителя який викладає предмет'
-                disabled={!!subjectId}
+                disabled={isDisable}
               >
                 {users &&
                   users.map((user) => (
