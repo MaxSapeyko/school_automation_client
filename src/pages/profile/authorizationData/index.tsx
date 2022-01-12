@@ -3,6 +3,8 @@ import { Col, Form, Input, Row } from 'antd';
 
 import useStyles from './style';
 import { ProfileProps } from '..';
+import { Role } from '../../../utils/enums';
+import { appState } from '../../../context/AppState';
 
 const OtherInfo: FC<Pick<ProfileProps, 'isCreate'>> = ({ isCreate }) => {
   const classes = useStyles();
@@ -17,11 +19,13 @@ const OtherInfo: FC<Pick<ProfileProps, 'isCreate'>> = ({ isCreate }) => {
             <Input placeholder='Логін' disabled={!isCreate} />
           </Form.Item>
         </Col>
-        <Col span={12}>
-          <Form.Item required name='password'>
-            <Input placeholder=':password' disabled={!isCreate} />
-          </Form.Item>
-        </Col>
+        {appState.currentUser?.role === Role.Administator && (
+          <Col span={12}>
+            <Form.Item required name='password'>
+              <Input placeholder=':password' disabled={!isCreate} />
+            </Form.Item>
+          </Col>
+        )}
       </Row>
     </Col>
   );
